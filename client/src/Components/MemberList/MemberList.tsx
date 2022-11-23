@@ -12,7 +12,7 @@ const MemberList: React.FC = (props: Props) => {
         <div className="members-count">31</div>
       </div>
       <div className="members-list">
-        {[0, 1, 2, 3, 4, 5].map((index) => (
+        {[0, 1, 2, 3, 4, 5, 6, 7].map((index) => (
           <Member key={index} />
         ))}
       </div>
