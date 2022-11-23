@@ -5,6 +5,10 @@ import "Assets/Styles/membersList.scss";
 type Props = {};
 
 const MemberList: React.FC = (props: Props) => {
+  function openAddMemberModal(): void {
+    console.log("open add member modal");
+  }
+
   return (
     <div className="members-list-container">
       <div className="members-list-title-row">
@@ -16,7 +20,7 @@ const MemberList: React.FC = (props: Props) => {
           <Member key={index} />
         ))}
       </div>
-      <button className="add-members-btn">
+      <button className="add-members-btn" onClick={openAddMemberModal}>
         <span className="material-symbols-rounded">add</span>
         Add Member
       </button>
