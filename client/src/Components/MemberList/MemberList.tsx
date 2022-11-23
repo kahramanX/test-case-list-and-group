@@ -16,7 +16,7 @@ const MemberList: React.FC = (props: Props) => {
           <Member key={index} />
         ))}
       </div>
-      <button>test</button>
+      <button className="add-members-btn">Add Member</button>
     </div>
   );
 };

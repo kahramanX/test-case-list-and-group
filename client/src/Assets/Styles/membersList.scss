@@ -31,23 +31,32 @@
 
   .members-list {
     .member-container {
-      padding: 8px 14px;
+      padding: 8px 18px;
       display: flex;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
       border-radius: 14px;
 
-      .member-img {
-        img {
-          border: 1px solid #dbdbdb;
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-        }
-      }
+      .member-short-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-      .member-fullname {
-        font-weight: 600;
+        .member-img {
+          margin-right: 18px;
+          img {
+            border: 1px solid #dbdbdb;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+
+        .member-fullname {
+          font-size: 14px;
+          font-weight: 600;
+        }
       }
 
       .member-action-buttons {
@@ -92,5 +101,15 @@
         background-color: #f0f3f8a6;
       }
     }
+  }
+
+  .add-members-btn {
+    color: white;
+    background-color: #1960ea;
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 16px;
   }
 }

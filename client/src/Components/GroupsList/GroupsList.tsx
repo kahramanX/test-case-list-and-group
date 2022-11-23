@@ -1,4 +1,3 @@
-import Member from "Components/MemberList/Member";
 import React from "react";
 import "Assets/Styles/groupsList.scss";
 

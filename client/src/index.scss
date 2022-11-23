@@ -2,13 +2,19 @@
 
 // Reset CSS Start
 body {
-  font-family: "Inter", system-ui;
+  font-family: "Inter", system-ui !important;
+}
+
+button,
+input {
+  font-family: inherit;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border: none !important;
 }
 // Reset CSS End
 
@@ -28,6 +34,7 @@ body {
 
 ::selection {
   color: #fff;
+  background-color: aqua;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
 }
