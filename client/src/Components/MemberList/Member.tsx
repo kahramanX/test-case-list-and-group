@@ -2,6 +2,18 @@ import React from "react";
 type Props = {};
 
 const Member: React.FC = (props: Props) => {
+  function openMemberInfoModal(): void {
+    console.log("open member info modal");
+  }
+
+  function addMemberToGroup(): void {
+    console.log("add member to group");
+  }
+
+  function deleteMemberFromMemberList(): void {
+    console.log("delete member");
+  }
+
   return (
     <div className="member-container">
       <div className="member-short-info">
@@ -16,11 +28,14 @@ const Member: React.FC = (props: Props) => {
         <div className="member-fullname">Ege Kahraman</div>
       </div>
       <div className="member-action-buttons">
-        <div className="member-infos-btn">
+        <div className="member-infos-btn" onClick={openMemberInfoModal}>
           <span className="material-symbols-rounded">expand_content</span>{" "}
         </div>
-        <div className="add-to-group-btn">
+        <div className="add-to-group-btn" onClick={addMemberToGroup}>
           <span className="material-symbols-rounded">docs_add_on</span>
+        </div>
+        <div className="delete-member-btn" onClick={deleteMemberFromMemberList}>
+          <span className="material-symbols-rounded">delete_forever</span>{" "}
         </div>
       </div>
     </div>
