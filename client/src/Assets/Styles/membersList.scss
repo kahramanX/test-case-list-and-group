@@ -1,0 +1,96 @@
+.members-list-container {
+  padding: 10px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0px 0px 10px 0px #dbdbdb;
+
+  .members-list-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 14px;
+
+    .members-list-title {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .members-count {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      background-color: #edf2fea6;
+      color: #1960ea;
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .members-list {
+    .member-container {
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      border-radius: 14px;
+
+      .member-img {
+        img {
+          border: 1px solid #dbdbdb;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+        }
+      }
+
+      .member-fullname {
+        font-weight: 600;
+      }
+
+      .member-action-buttons {
+        display: flex;
+        align-items: center;
+
+        .member-infos-btn {
+          width: 32px;
+          height: 32px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #edf2fea6;
+          box-shadow: 0px 0px 2px 0px #dbdbdb;
+          cursor: pointer;
+          margin-right: 12px;
+
+          span {
+            color: #1960ea;
+          }
+        }
+
+        .add-to-group-btn {
+          width: 32px;
+          height: 32px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #edf2fea6;
+          box-shadow: 0px 0px 2px 0px #dbdbdb;
+          cursor: pointer;
+
+          span {
+            color: #1960ea;
+          }
+        }
+      }
+
+      &:nth-child(odd) {
+        background-color: #f0f3f8a6;
+      }
+    }
+  }
+}

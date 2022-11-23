@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-// Reset css Start
+// Reset CSS Start
 body {
   font-family: "Inter", system-ui;
 }
@@ -9,4 +9,25 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+// Reset CSS End
+
+.App {
+  display: grid;
+  grid-template-columns: repeat(2, 40%);
+  justify-content: space-between;
+  padding: 50px 10%;
+  background: rgb(167, 175, 193);
+  background: linear-gradient(
+    0deg,
+    rgba(167, 175, 193, 1) 40%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  height: 100vh;
+}
+
+::selection {
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
