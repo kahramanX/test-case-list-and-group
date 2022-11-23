@@ -16,7 +16,10 @@ const MemberList: React.FC = (props: Props) => {
           <Member key={index} />
         ))}
       </div>
-      <button className="add-members-btn">Add Member</button>
+      <button className="add-members-btn">
+        <span className="material-symbols-rounded">add</span>
+        Add Member
+      </button>
     </div>
   );
 };

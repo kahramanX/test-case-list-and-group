@@ -17,7 +17,7 @@ const Member: React.FC = (props: Props) => {
       </div>
       <div className="member-action-buttons">
         <div className="member-infos-btn">
-          <span className="material-symbols-rounded">info</span>
+          <span className="material-symbols-rounded">expand_content</span>{" "}
         </div>
         <div className="add-to-group-btn">
           <span className="material-symbols-rounded">docs_add_on</span>
