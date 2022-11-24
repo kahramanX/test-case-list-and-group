@@ -9,8 +9,6 @@ type Props = {};
 
 const MemberList: React.FC = (props: Props) => {
   function openAddMemberModal() {
-    setDeleteModalIsOpen(true);
-
     console.log("open add member modal");
   }
 
