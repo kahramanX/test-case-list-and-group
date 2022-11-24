@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 0px 2px 0px #dbdbdb;
+  box-shadow: $sm-box-shadow !important;
   cursor: pointer;
 }
 
