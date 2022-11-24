@@ -4,16 +4,52 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;
   color: white;
   border-radius: 12px;
-  padding: 12px;
+}
+
+.base-button.red {
+  color: $dark-red;
+  background-color: $dark-red;
 }
 
 .base-button.blue {
   color: white;
-  background-color: #195fea;
+  background-color: $dark-blue;
+}
+
+.base-button.green {
+  color: $white;
+  background-color: $green-500;
+}
+
+.base-button.red-border {
+  color: $dark-red;
+  border: 2px solid $dark-red !important;
+  background-color: $white;
+}
+
+.base-button.blue-border {
+  color: $dark-blue;
+  border: 2px solid $dark-blue !important;
+  background-color: $white;
+}
+
+.base-button.green-border {
+  color: $green-500;
+  border: 2px solid $green-500 !important;
+  background-color: $white;
+}
+
+.base-button.md {
+  padding: 8px;
+  width: 100%;
+}
+
+.base-button.xl {
+  padding: 12px;
+  width: 100%;
 }
