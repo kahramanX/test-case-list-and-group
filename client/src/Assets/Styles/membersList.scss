@@ -21,6 +21,9 @@
   .members-list {
     margin-bottom: 12px;
 
+    div {
+    }
+
     .popover-container {
       margin-top: 12px;
       margin-bottom: 12px;
@@ -32,7 +35,22 @@
 
         .react-dropdown-select {
           border-radius: 8px !important;
+
+          .react-dropdown-select-option {
+            padding: 4px 12px;
+          }
         }
+      }
+    }
+
+    .popover-actived {
+      background-color: $light-green !important;
+      border-radius: 12px;
+    }
+
+    div {
+      &:nth-child(even) {
+        background-color: #f0f3f8a6;
       }
     }
 
@@ -42,7 +60,6 @@
       align-items: center;
       justify-content: space-between;
       border-radius: 12px;
-      position: relative;
 
       .member-short-info {
         display: flex;
@@ -61,6 +78,7 @@
         }
 
         .member-fullname {
+          background-color: transparent;
           font-size: 14px;
           font-weight: 600;
         }
@@ -69,16 +87,13 @@
       .member-action-buttons {
         display: flex;
         align-items: center;
+        background-color: transparent;
 
         div {
           &:not(:last-child) {
             margin-right: 12px;
           }
         }
-      }
-
-      &:nth-child(odd) {
-        background-color: #f0f3f8a6;
       }
     }
   }
