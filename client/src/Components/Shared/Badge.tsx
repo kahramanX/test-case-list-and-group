@@ -7,7 +7,7 @@ type Props = {
   exClass?: string;
 };
 
-const Badge: React.FC<Props> = ({ text, color, exClass }) => {
+const Badge: React.FC<Props> = ({ text, color, exClass = "" }) => {
   return <div className={`base-badge ${color} ${exClass}`}>{text}</div>;
 };
 

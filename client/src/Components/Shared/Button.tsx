@@ -12,7 +12,7 @@ type Props = {
 const Button: React.FC<Props> = ({
   text,
   iconName,
-  exClass,
+  exClass = "",
   color,
   action,
 }) => {
