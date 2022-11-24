@@ -1,5 +1,5 @@
 import React from "react";
-import "Assets/Styles/componentsStyle/badge.scss";
+import "Assets/Styles/ComponentsStyle/badge.scss";
 
 type Props = {
   text: string;
