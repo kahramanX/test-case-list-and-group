@@ -21,12 +21,28 @@
   .members-list {
     margin-bottom: 12px;
 
+    .popover-container {
+      margin-top: 12px;
+      margin-bottom: 12px;
+      border: 1px solid $light-blue !important;
+      border-radius: 8px !important;
+
+      div {
+        border-radius: 8px !important;
+
+        .react-dropdown-select {
+          border-radius: 8px !important;
+        }
+      }
+    }
+
     .member-container {
       padding: 8px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-radius: 12px;
+      position: relative;
 
       .member-short-info {
         display: flex;

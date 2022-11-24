@@ -15,6 +15,10 @@
   }
 }
 
+.base-icon-button.clicked {
+  scale: 0.75;
+}
+
 .base-icon-button.blue {
   background-color: $light-blue;
 

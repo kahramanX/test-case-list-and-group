@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import "Assets/Styles/ComponentsStyle/viewAndEditModal.scss";
 import Button from "../Button";
 import IconButton from "../IconButton";
+import Select from "react-dropdown-select";
 
 type Props = {
   memberID: string;
@@ -37,6 +38,26 @@ const ViewAndEditModal: React.FC<Props> = ({
       width: "700px",
     },
   };
+
+  interface Ioptions {
+    label: string;
+    value: string;
+  }
+
+  const options: Ioptions[] = [
+    {
+      label: "label1",
+      value: "label1",
+    },
+    {
+      label: "label1",
+      value: "label2",
+    },
+    {
+      label: "label3",
+      value: "label3",
+    },
+  ];
 
   return (
     <Modal
@@ -88,41 +109,118 @@ const ViewAndEditModal: React.FC<Props> = ({
                   />
                 </td>
                 <td>
-                  {" "}
-                  <input type="file" id="img" name="img" accept="image/*" />
+                  {editModeIsOpen && (
+                    <input type="file" id="img" name="img" accept="image/*" />
+                  )}
                 </td>
               </tr>
               <tr>
                 <td className="table-title">First Name:</td>
-                <td>Ege</td>
+                {!editModeIsOpen && <td>Ege</td>}
+                {editModeIsOpen && (
+                  <td>
+                    <input
+                      type={"text"}
+                      value={"Ege"}
+                      className="modal-input"
+                    />
+                  </td>
+                )}
               </tr>
               <tr>
                 <td className="table-title">Last Name: </td>
-                <td>Kahraman</td>
+                {!editModeIsOpen && <td>Kahraman</td>}
+
+                {editModeIsOpen && (
+                  <td>
+                    <input
+                      type={"text"}
+                      value={"Kahraman"}
+                      className="modal-input"
+                    />
+                  </td>
+                )}
               </tr>
               <tr>
                 <td className="table-title">E-mail:</td>
-                <td>test@gmail.com</td>
+                {!editModeIsOpen && <td>test@gmail.com</td>}
+                {editModeIsOpen && (
+                  <td>
+                    <input
+                      type={"email"}
+                      value={"Kahraman"}
+                      className="modal-input"
+                    />
+                  </td>
+                )}
               </tr>
               <tr>
                 <td className="table-title">Phone:</td>
-                <td>05426772225</td>
+                {!editModeIsOpen && <td>05426772225</td>}
+                {editModeIsOpen && (
+                  <td>
+                    <input
+                      type={"phone"}
+                      value={"05426772225"}
+                      className="modal-input"
+                    />
+                  </td>
+                )}
               </tr>
               <tr>
                 <td className="table-title">Birthday:</td>
-                <td>20 November 2002</td>
+                {!editModeIsOpen && <td>20 November 2002</td>}
+                {editModeIsOpen && (
+                  <td>
+                    <input
+                      type={"date"}
+                      //value={""}
+                      className="modal-input"
+                    />
+                  </td>
+                )}
               </tr>
               <tr>
                 <td className="table-title">Added Groups:</td>
-                <td>Hello, xyz, Winners, Friends</td>
+
+                {!editModeIsOpen && <td>Hello, xyz, Winners, Friends</td>}
+                {editModeIsOpen && (
+                  <td>
+                    <Select
+                      multi={true}
+                      options={options}
+                      values={[]}
+                      onChange={(values) => console.log(values)}
+                    />
+                  </td>
+                )}
               </tr>
+
               <tr>
                 <td className="table-title">Created Date:</td>
-                <td>1 October 2022</td>
+                {!editModeIsOpen && <td>1 October 2022</td>}
+                {editModeIsOpen && (
+                  <td>
+                    <input
+                      type={"date"}
+                      //value={""}
+                      className="modal-input"
+                    />
+                  </td>
+                )}
               </tr>
               <tr>
                 <td className="table-title">Updated Date:</td>
-                <td>1 October 2022</td>
+                {!editModeIsOpen && <td>1 October 2022</td>}
+                {editModeIsOpen && (
+                  <td>
+                    <input
+                      type={"date"}
+                      //value={""}
+                      className="modal-input"
+                    />
+                  </td>
+                )}
               </tr>
               {/*  <tr>
                 <td className="table-title">Notes:</td>
