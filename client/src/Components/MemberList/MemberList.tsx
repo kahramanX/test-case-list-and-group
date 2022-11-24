@@ -4,6 +4,7 @@ import "Assets/Styles/membersList.scss";
 import Badge from "Components/Shared/Badge";
 import Button from "Components/Shared/Button";
 import QuestionModal from "Components/Shared/Modals/QuestionModal";
+import ViewAndEditModal from "Components/Shared/Modals/ViewAndEditModal";
 
 type Props = {};
 
@@ -54,6 +55,7 @@ const MemberList: React.FC = (props: Props) => {
         isOpen={deleteModalIsOpen}
         whenClosing={() => questionModalClosingActions()}
       />
+      <ViewAndEditModal />
     </div>
   );
 };
