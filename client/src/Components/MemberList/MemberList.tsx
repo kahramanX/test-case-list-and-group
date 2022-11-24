@@ -46,7 +46,7 @@ const MemberList: React.FC = (props: Props) => {
         action={(): any => openAddMemberModal()}
       />
 
-      {"MODALS"}
+      {/* MODALS */}
 
       <QuestionModal
         modalTitle={"Are you sure you want to delete this member?"}
