@@ -21,7 +21,7 @@ const MemberList: React.FC = (props: Props) => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
   const [viewAndEditModalIsOpen, setViewAndEditModalIsOpen] =
     useState<boolean>(false);
-  const [addMemberToGroup, setAddMemberToGroup] = useState<boolean>(false);
+  // const [addMemberToGroup, setAddMemberToGroup] = useState<boolean>(false);
 
   return (
     <div className="members-list-container">
@@ -68,12 +68,10 @@ const MemberList: React.FC = (props: Props) => {
 
       <ViewAndEditModal
         memberID={"111"}
-        confirmBtnText={"Save"}
-        confirmBtnAction={""}
         cancelBtnText={"Cancel"}
-        cancelBtnAction={""}
-        isOpen={true}
-        whenClosing={""}
+        cancelBtnAction={() => setViewAndEditModalIsOpen(false)}
+        isOpen={viewAndEditModalIsOpen}
+        whenClosing={() => setViewAndEditModalIsOpen(false)}
       />
     </div>
   );

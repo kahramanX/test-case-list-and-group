@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "Assets/Styles/ComponentsStyle/viewAndEditModal.scss";
 import Button from "../Button";
@@ -6,8 +6,6 @@ import IconButton from "../IconButton";
 
 type Props = {
   memberID: string;
-  confirmBtnText: string;
-  confirmBtnAction?: any;
   cancelBtnText: string;
   cancelBtnAction?: any;
   isOpen: boolean;
@@ -16,13 +14,17 @@ type Props = {
 
 const ViewAndEditModal: React.FC<Props> = ({
   memberID,
-  confirmBtnText,
-  confirmBtnAction,
   cancelBtnText,
   cancelBtnAction,
   isOpen,
   whenClosing,
 }) => {
+  const [editModeIsOpen, setEditModeIsOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(editModeIsOpen);
+  }, [editModeIsOpen]);
+
   const customStyles = {
     content: {
       top: "50%",
@@ -46,11 +48,27 @@ const ViewAndEditModal: React.FC<Props> = ({
         <div className="ve-modal-header">
           <div className="ve-modal-title">View And Update Member</div>
           <div className="ve-modal-edit-btn">
-            <IconButton
-              iconName={"edit"}
-              color={"green"}
-              action={() => console.log("anaaaaaaaaaa")}
-            />
+            {!editModeIsOpen && (
+              <IconButton
+                iconName={"edit"}
+                color={"green"}
+                action={() => setEditModeIsOpen(true)}
+              />
+            )}
+            {editModeIsOpen && (
+              <div className="edit-btn-actions">
+                <IconButton
+                  iconName={"close"}
+                  color={"red"}
+                  action={() => setEditModeIsOpen(false)}
+                />
+                <IconButton
+                  iconName={"done"}
+                  color={"green"}
+                  action={() => setEditModeIsOpen(false)}
+                />
+              </div>
+            )}
           </div>
         </div>
         <div className="ve-modal-table-container">
@@ -110,14 +128,7 @@ const ViewAndEditModal: React.FC<Props> = ({
             text={cancelBtnText}
             size={"md"}
             color={"red-border"}
-            action={() => cancelBtnAction()}
-          />
-          <Button
-            text={confirmBtnText}
-            size={"md"}
-            color={"blue"}
-            action={() => confirmBtnAction()}
-            //isDisabled={false}
+            action={cancelBtnAction}
           />
         </div>
       </div>

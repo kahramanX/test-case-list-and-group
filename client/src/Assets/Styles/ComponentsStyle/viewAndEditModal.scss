@@ -2,6 +2,9 @@
 
 .viewedit-modal-text-container {
   .ve-modal-header {
+    display: flex;
+    justify-content: space-between;
+
     .ve-modal-title {
       font-size: 28px;
       font-weight: 600;
@@ -9,6 +12,15 @@
     }
 
     .ve-modal-edit-btn {
+      .edit-btn-actions {
+        display: flex;
+
+        div {
+          &:first-child {
+            margin-right: 12px;
+          }
+        }
+      }
     }
   }
 
