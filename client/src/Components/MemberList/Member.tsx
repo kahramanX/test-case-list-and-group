@@ -2,11 +2,16 @@ import IconButton from "Components/Shared/IconButton";
 import React from "react";
 type Props = {
   setDeleteModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setViewAndEditModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Member: React.FC<Props> = ({ setDeleteModalIsOpen }) => {
+const Member: React.FC<Props> = ({
+  setDeleteModalIsOpen,
+  setViewAndEditModalIsOpen,
+}) => {
   function openMemberInfoModal(): any {
     console.log("open member info modal");
+    setViewAndEditModalIsOpen(true);
   }
 
   function addMemberToGroup(): any {

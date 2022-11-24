@@ -9,6 +9,10 @@
   cursor: pointer;
   color: white;
   border-radius: 12px;
+
+  &:active {
+    scale: 0.96;
+  }
 }
 
 .base-button.red {

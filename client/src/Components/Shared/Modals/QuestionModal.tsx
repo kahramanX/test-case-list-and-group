@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import Button from "../Button";
 import "Assets/Styles/ComponentsStyle/questionModal.scss";
+
 type Props = {
   modalTitle: string;
   modalDesc: string;

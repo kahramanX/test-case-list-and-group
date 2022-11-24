@@ -9,6 +9,10 @@
   justify-content: center;
   box-shadow: $sm-box-shadow !important;
   cursor: pointer;
+
+  &:active {
+    scale: 0.85;
+  }
 }
 
 .base-icon-button.blue {
