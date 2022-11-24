@@ -1,8 +1,10 @@
 import IconButton from "Components/Shared/IconButton";
 import React from "react";
-type Props = {};
+type Props = {
+  setDeleteModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-const Member: React.FC = (props: Props) => {
+const Member: React.FC<Props> = ({ setDeleteModalIsOpen }) => {
   function openMemberInfoModal(): any {
     console.log("open member info modal");
   }
@@ -13,6 +15,7 @@ const Member: React.FC = (props: Props) => {
 
   function deleteMemberFromMemberList(): any {
     console.log("delete member");
+    setDeleteModalIsOpen(true);
   }
 
   return (

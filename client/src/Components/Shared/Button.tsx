@@ -21,7 +21,7 @@ const Button: React.FC<Props> = ({
   return (
     <button
       className={`base-button ${color} ${size}  ${exClass}`}
-      onClick={action()}
+      onClick={() => action()}
     >
       {iconName && <span className="material-symbols-rounded">{iconName}</span>}
       {text}
