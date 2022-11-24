@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import "Assets/Styles/ComponentsStyle/viewAndEditModal.scss";
 import Button from "../Button";
+import IconButton from "../IconButton";
 
 type Props = {
   memberID: string;
@@ -42,7 +43,16 @@ const ViewAndEditModal: React.FC<Props> = ({
       contentLabel="View And Edit Modal"
     >
       <div className="viewedit-modal-text-container">
-        <div className="ve-modal-title">View And Update Member</div>
+        <div className="ve-modal-header">
+          <div className="ve-modal-title">View And Update Member</div>
+          <div className="ve-modal-edit-btn">
+            <IconButton
+              iconName={"edit"}
+              color={"green"}
+              action={() => console.log("anaaaaaaaaaa")}
+            />
+          </div>
+        </div>
         <div className="ve-modal-table-container">
           <table>
             <tbody>

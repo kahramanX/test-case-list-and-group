@@ -27,7 +27,7 @@
 
 .base-button.green {
   color: $white;
-  background-color: $green-500;
+  background-color: $dark-green;
 }
 
 .base-button.red-border {
@@ -43,8 +43,8 @@
 }
 
 .base-button.green-border {
-  color: $green-500;
-  border: 2px solid $green-500 !important;
+  color: $dark-green;
+  border: 2px solid $dark-green !important;
   background-color: $white;
 }
 
