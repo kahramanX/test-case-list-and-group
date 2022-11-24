@@ -57,7 +57,7 @@ const Member: React.FC<Props> = ({
 
   return (
     <>
-      <div className={`${!isOpenPopover && "popover-actived"}`}>
+      <div className={`member-row ${!isOpenPopover && "popover-actived"}`}>
         <div className={`member-container`}>
           <div className="member-short-info">
             <div className="member-img">
