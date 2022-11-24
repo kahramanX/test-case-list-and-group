@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import Modal from "react-modal";
-import "Assets/Styles/ComponentsStyle/viewAndEditModal.scss";
-import Button from "../Button";
-import IconButton from "../IconButton";
+import React from "react";
 import Select from "react-dropdown-select";
+import Modal from "react-modal";
+import Button from "../Button";
 
 type Props = {
-  memberID: string;
-  cancelBtnText: string;
-  cancelBtnAction?: any;
   isOpen: boolean;
+  confirmBtnText: string;
+  cancelBtnText: string;
+  cancelBtnAction: any;
   whenClosing: any;
 };
 
@@ -18,20 +16,12 @@ interface Ioptions {
   value: string;
 }
 
-const ViewAndEditModal: React.FC<Props> = ({
-  memberID,
-  cancelBtnText,
-  cancelBtnAction,
+const AddMemberModal: React.FC<Props> = ({
   isOpen,
-  whenClosing,
+  confirmBtnText,
+  cancelBtnAction,
+  cancelBtnText,
 }) => {
-  const [editModeIsOpen, setEditModeIsOpen] = useState<boolean>(false);
-
-  function editViewModalActions() {
-    whenClosing();
-    setEditModeIsOpen(false);
-  }
-
   const customStyles = {
     content: {
       top: "50%",
@@ -64,37 +54,14 @@ const ViewAndEditModal: React.FC<Props> = ({
       isOpen={isOpen}
       onRequestClose={() => {
         cancelBtnAction();
-        setEditModeIsOpen(false);
       }}
       style={customStyles}
       contentLabel="View And Edit Modal"
     >
       <div className="viewedit-modal-text-container">
         <div className="ve-modal-header">
-          <div className="ve-modal-title">View And Update Member</div>
-          <div className="ve-modal-edit-btn">
-            {!editModeIsOpen && (
-              <IconButton
-                iconName={"edit"}
-                color={"green"}
-                action={() => setEditModeIsOpen(true)}
-              />
-            )}
-            {editModeIsOpen && (
-              <div className="edit-btn-actions">
-                <IconButton
-                  iconName={"close"}
-                  color={"red"}
-                  action={() => setEditModeIsOpen(false)}
-                />
-                <IconButton
-                  iconName={"done"}
-                  color={"green"}
-                  action={() => setEditModeIsOpen(false)}
-                />
-              </div>
-            )}
-          </div>
+          <div className="ve-modal-title">Add Member</div>
+          <div className="ve-modal-edit-btn"></div>
         </div>
         <div className="ve-modal-table-container">
           <table>
@@ -109,123 +76,75 @@ const ViewAndEditModal: React.FC<Props> = ({
                   />
                 </td>
                 <td>
-                  {editModeIsOpen && (
-                    <input type="file" id="img" name="img" accept="image/*" />
-                  )}
+                  <input type="file" id="img" name="img" accept="image/*" />
                 </td>
               </tr>
               <tr>
                 <td className="table-title">First Name:</td>
-                {!editModeIsOpen && <td>Ege</td>}
-                {editModeIsOpen && (
-                  <td>
-                    <input
-                      type={"text"}
-                      value={"Ege"}
-                      className="modal-input"
-                    />
-                  </td>
-                )}
+
+                <td>
+                  <input
+                    type={"text"}
+                    defaultValue={"Ege"}
+                    className="modal-input"
+                  />
+                </td>
               </tr>
               <tr>
                 <td className="table-title">Last Name: </td>
-                {!editModeIsOpen && <td>Kahraman</td>}
 
-                {editModeIsOpen && (
-                  <td>
-                    <input
-                      type={"text"}
-                      value={"Kahraman"}
-                      className="modal-input"
-                    />
-                  </td>
-                )}
+                <td>
+                  <input
+                    type={"text"}
+                    defaultValue={"Kahraman"}
+                    className="modal-input"
+                  />
+                </td>
               </tr>
               <tr>
                 <td className="table-title">E-mail:</td>
-                {!editModeIsOpen && <td>test@gmail.com</td>}
-                {editModeIsOpen && (
-                  <td>
-                    <input
-                      type={"email"}
-                      value={"Kahraman"}
-                      className="modal-input"
-                    />
-                  </td>
-                )}
+
+                <td>
+                  <input
+                    type={"email"}
+                    defaultValue={"Kahraman"}
+                    className="modal-input"
+                  />
+                </td>
               </tr>
               <tr>
                 <td className="table-title">Phone:</td>
-                {!editModeIsOpen && <td>05426772225</td>}
-                {editModeIsOpen && (
-                  <td>
-                    <input
-                      type={"phone"}
-                      value={"05426772225"}
-                      className="modal-input"
-                    />
-                  </td>
-                )}
+
+                <td>
+                  <input
+                    type={"phone"}
+                    defaultValue={"05426772225"}
+                    className="modal-input"
+                  />
+                </td>
               </tr>
               <tr>
                 <td className="table-title">Birthday:</td>
-                {!editModeIsOpen && <td>20 November 2002</td>}
-                {editModeIsOpen && (
-                  <td>
-                    <input
-                      type={"date"}
-                      //value={""}
-                      className="modal-input"
-                    />
-                  </td>
-                )}
-              </tr>
-              <tr>
-                <td className="table-title">Added Groups:</td>
 
-                {!editModeIsOpen && <td>Hello, xyz, Winners, Friends</td>}
-                {editModeIsOpen && (
-                  <td>
-                    <Select
-                      multi={true}
-                      options={options}
-                      values={[]}
-                      onChange={(values) => console.log(values)}
-                    />
-                  </td>
-                )}
-              </tr>
-
-              <tr>
-                <td className="table-title">Created Date:</td>
-                {!editModeIsOpen && <td>1 October 2022</td>}
-                {editModeIsOpen && (
-                  <td>
-                    <input
-                      type={"date"}
-                      //value={""}
-                      className="modal-input"
-                    />
-                  </td>
-                )}
+                <td>
+                  <input
+                    type={"date"}
+                    //defaultValue={""}
+                    className="modal-input"
+                  />
+                </td>
               </tr>
               <tr>
-                <td className="table-title">Updated Date:</td>
-                {!editModeIsOpen && <td>1 October 2022</td>}
-                {editModeIsOpen && (
-                  <td>
-                    <input
-                      type={"date"}
-                      //value={""}
-                      className="modal-input"
-                    />
-                  </td>
-                )}
+                <td className="table-title">Add To Groups:</td>
+                <td>
+                  <Select
+                    multi={true}
+                    options={options}
+                    values={[]}
+                    onChange={(values) => console.log(values)}
+                  />
+                </td>
               </tr>
-              {/*  <tr>
-                <td className="table-title">Notes:</td>
-                <td className="" >text</td>
-              </tr> */}
             </tbody>
           </table>
         </div>
@@ -234,7 +153,13 @@ const ViewAndEditModal: React.FC<Props> = ({
             text={cancelBtnText}
             size={"md"}
             color={"red-border"}
-            action={editViewModalActions}
+            action={() => cancelBtnAction()}
+          />
+          <Button
+            text={confirmBtnText}
+            size={"md"}
+            color={"blue"}
+            action={() => console.log("kaydedildi")}
           />
         </div>
       </div>
@@ -242,4 +167,4 @@ const ViewAndEditModal: React.FC<Props> = ({
   );
 };
 
-export default ViewAndEditModal;
+export default AddMemberModal;

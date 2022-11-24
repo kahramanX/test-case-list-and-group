@@ -5,23 +5,25 @@ import Badge from "Components/Shared/Badge";
 import Button from "Components/Shared/Button";
 import QuestionModal from "Components/Shared/Modals/QuestionModal";
 import ViewAndEditModal from "Components/Shared/Modals/ViewAndEditModal";
+import AddMemberModal from "Components/Shared/Modals/AddMemberModal";
 
 type Props = {};
 
 const MemberList: React.FC = (props: Props) => {
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
+  const [viewAndEditModalIsOpen, setViewAndEditModalIsOpen] =
+    useState<boolean>(false);
+  const [addMemberModal, setAddMemberModal] = useState<boolean>(false);
+
   function openAddMemberModal() {
     console.log("open add member modal");
+    setAddMemberModal(true);
   }
 
   function questionModalClosingActions() {
     console.log("closing");
     setDeleteModalIsOpen(false);
   }
-
-  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
-  const [viewAndEditModalIsOpen, setViewAndEditModalIsOpen] =
-    useState<boolean>(false);
-  // const [addMemberToGroup, setAddMemberToGroup] = useState<boolean>(false);
 
   return (
     <div className="members-list-container">
@@ -72,6 +74,14 @@ const MemberList: React.FC = (props: Props) => {
         cancelBtnAction={() => setViewAndEditModalIsOpen(false)}
         isOpen={viewAndEditModalIsOpen}
         whenClosing={() => setViewAndEditModalIsOpen(false)}
+      />
+
+      <AddMemberModal
+        isOpen={addMemberModal}
+        confirmBtnText={"Add"}
+        cancelBtnText={"Cancel"}
+        cancelBtnAction={() => setAddMemberModal(false)}
+        whenClosing={() => setAddMemberModal(false)}
       />
     </div>
   );
