@@ -46,6 +46,10 @@ input {
   transition: opacity 250ms ease-in-out;
 }
 
+.ReactModal__Content {
+  border-radius: 14px !important;
+}
+
 .ReactModal__Overlay--after-open {
   opacity: 1;
 }

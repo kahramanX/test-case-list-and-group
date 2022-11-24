@@ -45,6 +45,9 @@ const MemberList: React.FC = (props: Props) => {
         size={"xl"}
         action={(): any => openAddMemberModal()}
       />
+
+      {"MODALS"}
+
       <QuestionModal
         modalTitle={"Are you sure you want to delete this member?"}
         modalDesc={
@@ -62,7 +65,16 @@ const MemberList: React.FC = (props: Props) => {
         isOpen={deleteModalIsOpen}
         whenClosing={() => questionModalClosingActions()}
       />
-      <ViewAndEditModal />
+
+      <ViewAndEditModal
+        memberID={"111"}
+        confirmBtnText={"Save"}
+        confirmBtnAction={""}
+        cancelBtnText={"Cancel"}
+        cancelBtnAction={""}
+        isOpen={true}
+        whenClosing={""}
+      />
     </div>
   );
 };
