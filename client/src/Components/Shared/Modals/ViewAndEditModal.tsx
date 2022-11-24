@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import "Assets/Styles/ComponentsStyle/viewAndEditModal.scss";
 import Button from "../Button";
 import IconButton from "../IconButton";
-import Select, { SelectProps } from "react-dropdown-select";
+import Select from "react-dropdown-select";
 
 type Props = {
   memberID: string;
