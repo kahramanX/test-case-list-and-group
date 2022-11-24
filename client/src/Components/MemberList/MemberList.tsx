@@ -19,6 +19,9 @@ const MemberList: React.FC = (props: Props) => {
   }
 
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
+  const [viewAndEditModalIsOpen, setViewAndEditModalIsOpen] =
+    useState<boolean>(false);
+  const [addMemberToGroup, setAddMemberToGroup] = useState<boolean>(false);
 
   return (
     <div className="members-list-container">
@@ -28,7 +31,11 @@ const MemberList: React.FC = (props: Props) => {
       </div>
       <div className="members-list">
         {[0, 1, 2, 3, 4, 5, 6, 7].map((index) => (
-          <Member key={index} setDeleteModalIsOpen={setDeleteModalIsOpen} />
+          <Member
+            key={index}
+            setDeleteModalIsOpen={setDeleteModalIsOpen}
+            setViewAndEditModalIsOpen={setViewAndEditModalIsOpen}
+          />
         ))}
       </div>
       <Button
