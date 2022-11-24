@@ -83,6 +83,7 @@ const Member: React.FC<Props> = ({
           <IconButton
             iconName={"docs_add_on"}
             color={"blue"}
+            exClass={`${!isOpenPopover && "clicked"}`}
             action={(): any => addMemberToGroup()}
           />
         </div>
