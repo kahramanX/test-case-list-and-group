@@ -1,0 +1,19 @@
+@import "../variables.scss";
+
+.base-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.base-button.blue {
+  color: white;
+  background-color: #195fea;
+}

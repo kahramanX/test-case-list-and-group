@@ -1,0 +1,22 @@
+@import "../variables.scss";
+
+.base-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  width: 32px;
+  height: 32px;
+}
+
+.base-badge.blue {
+  background-color: $light-blue;
+  color: $dark-blue;
+}
+
+.base-badge.red {
+  background-color: $light-red;
+  color: $dark-red;
+}

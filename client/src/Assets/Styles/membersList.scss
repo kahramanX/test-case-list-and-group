@@ -14,19 +14,6 @@
       font-size: 24px;
       font-weight: 700;
     }
-
-    .members-count {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 700;
-      background-color: #c6e7ff;
-      color: #195fea;
-      width: 32px;
-      height: 32px;
-    }
   }
 
   .members-list {
@@ -120,19 +107,5 @@
         background-color: #f0f3f8a6;
       }
     }
-  }
-
-  .add-members-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    background-color: #195fea;
-    width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    font-weight: 500;
-    font-size: 16px;
-    cursor: pointer;
   }
 }
