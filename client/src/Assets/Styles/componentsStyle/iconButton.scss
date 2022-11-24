@@ -1,0 +1,28 @@
+@import "../variables.scss";
+
+.base-icon-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 2px 0px #dbdbdb;
+  cursor: pointer;
+}
+
+.base-icon-button.blue {
+  background-color: $light-blue;
+
+  span {
+    color: $dark-blue;
+  }
+}
+
+.base-icon-button.red {
+  background-color: $light-red;
+
+  span {
+    color: $dark-red;
+  }
+}

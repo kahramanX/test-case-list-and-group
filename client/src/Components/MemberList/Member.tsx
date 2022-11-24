@@ -1,7 +1,20 @@
+import IconButton from "Components/Shared/IconButton";
 import React from "react";
 type Props = {};
 
 const Member: React.FC = (props: Props) => {
+  function openMemberInfoModal(): any {
+    console.log("open member info modal");
+  }
+
+  function addMemberToGroup(): any {
+    console.log("add member to group");
+  }
+
+  function deleteMemberFromMemberList(): any {
+    console.log("delete member");
+  }
+
   return (
     <div className="member-container">
       <div className="member-short-info">
@@ -16,12 +29,21 @@ const Member: React.FC = (props: Props) => {
         <div className="member-fullname">Ege Kahraman</div>
       </div>
       <div className="member-action-buttons">
-        <div className="member-infos-btn">
-          <span className="material-symbols-rounded">expand_content</span>{" "}
-        </div>
-        <div className="add-to-group-btn">
-          <span className="material-symbols-rounded">docs_add_on</span>
-        </div>
+        <IconButton
+          iconName={"delete_forever"}
+          color={"red"}
+          action={(): any => deleteMemberFromMemberList}
+        />
+        <IconButton
+          iconName={"expand_content"}
+          color={"blue"}
+          action={(): any => openMemberInfoModal}
+        />
+        <IconButton
+          iconName={"docs_add_on"}
+          color={"blue"}
+          action={(): any => addMemberToGroup}
+        />
       </div>
     </div>
   );

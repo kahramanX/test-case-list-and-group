@@ -14,19 +14,6 @@
       font-size: 24px;
       font-weight: 700;
     }
-
-    .members-count {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 700;
-      background-color: #edf2fea6;
-      color: #1960ea;
-      width: 32px;
-      height: 32px;
-    }
   }
 
   .members-list {
@@ -65,36 +52,9 @@
         display: flex;
         align-items: center;
 
-        .member-infos-btn {
-          width: 32px;
-          height: 32px;
-          border-radius: 4px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: #edf2fea6;
-          box-shadow: 0px 0px 2px 0px #dbdbdb;
-          cursor: pointer;
-          margin-right: 12px;
-
-          span {
-            color: #1960ea;
-          }
-        }
-
-        .add-to-group-btn {
-          width: 32px;
-          height: 32px;
-          border-radius: 4px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: #edf2fea6;
-          box-shadow: 0px 0px 2px 0px #dbdbdb;
-          cursor: pointer;
-
-          span {
-            color: #1960ea;
+        div {
+          &:not(:last-child) {
+            margin-right: 12px;
           }
         }
       }
@@ -103,19 +63,5 @@
         background-color: #f0f3f8a6;
       }
     }
-  }
-
-  .add-members-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    background-color: #1960ea;
-    width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    font-weight: 500;
-    font-size: 16px;
-    cursor: pointer;
   }
 }
