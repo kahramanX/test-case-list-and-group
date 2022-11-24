@@ -59,32 +59,6 @@ const ViewAndEditModal: React.FC<Props> = ({
     },
   ];
 
-  const values: any[] = [
-    {
-      id: "cb7195eb-4387-4263-b2fc-9dc91749ee6e",
-      name: "Osborne Johns",
-      username: "Noah3",
-      email: "Lucy.Kuvalis6@hotmail.com",
-      address: {
-        street: "Lorna Track",
-        suite: 55770,
-        city: "North Makenzie",
-        zipcode: "23541",
-        geo: {
-          lat: "-2.9646",
-          lng: "165.4925",
-        },
-      },
-      phone: "(464) 194-4956",
-      website: "casey.com",
-      company: {
-        name: "Harris Group",
-        catchPhrase: "Synchronised real-time application",
-        bs: "bricks-and-clicks cultivate technologies",
-      },
-    },
-  ];
-
   return (
     <Modal
       isOpen={isOpen}
@@ -135,8 +109,9 @@ const ViewAndEditModal: React.FC<Props> = ({
                   />
                 </td>
                 <td>
-                  {" "}
-                  <input type="file" id="img" name="img" accept="image/*" />
+                  {editModeIsOpen && (
+                    <input type="file" id="img" name="img" accept="image/*" />
+                  )}
                 </td>
               </tr>
               <tr>
