@@ -25,7 +25,8 @@ const MemberList: React.FC = (props: Props) => {
       <Button
         iconName={"add"}
         text={"Add Member"}
-        color={"blue"}
+        color={"blue-border"}
+        size={"xl"}
         action={(): any => openAddMemberModal}
       />
     </div>

@@ -6,6 +6,7 @@ type Props = {
   iconName?: string;
   exClass?: string;
   color: string;
+  size?: string;
   action?: any;
 };
 
@@ -13,11 +14,15 @@ const Button: React.FC<Props> = ({
   text,
   iconName,
   exClass = "",
+  size = "",
   color,
   action,
 }) => {
   return (
-    <button className={`base-button ${color} ${exClass}`} onClick={action()}>
+    <button
+      className={`base-button ${color} ${size}  ${exClass}`}
+      onClick={action()}
+    >
       {iconName && <span className="material-symbols-rounded">{iconName}</span>}
       {text}
     </button>

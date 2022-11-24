@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 0px 2px 0px #dbdbdb;
+  box-shadow: $sm-box-shadow !important;
   cursor: pointer;
 }
 
@@ -21,6 +21,24 @@
 
 .base-icon-button.red {
   background-color: $light-red;
+
+  span {
+    color: $dark-red;
+  }
+}
+
+.base-icon-button.blue-border {
+  background-color: $white;
+  border: 2px solid $dark-blue !important;
+
+  span {
+    color: $dark-blue;
+  }
+}
+
+.base-icon-button.red-border {
+  background-color: $white;
+  border: 2px solid $light-red !important;
 
   span {
     color: $dark-red;
