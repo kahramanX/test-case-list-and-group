@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "react-bootstrap-accordion/dist/index.css";
+@import "Assets/Styles/variables.scss";
 
 // Reset CSS Start
 body {
@@ -58,3 +60,22 @@ input {
   opacity: 0;
 }
 //Modal General Styles End
+
+// Scrollbar Start
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $light-blue;
+  border-radius: 10px;
+}
+// Scrollbar End

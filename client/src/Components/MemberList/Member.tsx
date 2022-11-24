@@ -5,11 +5,13 @@ import Select from "react-dropdown-select";
 type Props = {
   setDeleteModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setViewAndEditModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  memberLocation: "memberList" | "memberGroup";
 };
 
 const Member: React.FC<Props> = ({
   setDeleteModalIsOpen,
   setViewAndEditModalIsOpen,
+  memberLocation,
 }) => {
   const [isOpenPopover, setIsOpenPopover] = useState<boolean>(true);
 
@@ -70,26 +72,38 @@ const Member: React.FC<Props> = ({
             </div>
             <div className="member-fullname">Ege Kahraman</div>
           </div>
-          <div className="member-action-buttons">
-            <IconButton
-              iconName={"delete_forever"}
-              color={"red"}
-              action={(): any => deleteMemberFromMemberList()}
-            />
-            <IconButton
-              iconName={"expand_content"}
-              color={"blue"}
-              action={(): any => openMemberInfoModal()}
-            />
-            <IconButton
-              iconName={"docs_add_on"}
-              color={"blue"}
-              exClass={`${!isOpenPopover && "clicked"}`}
-              action={(): any => addMemberToGroup()}
-            />
-          </div>
+          {memberLocation === "memberList" && (
+            <div className="member-action-buttons">
+              <IconButton
+                iconName={"delete_forever"}
+                color={"red"}
+                action={(): any => deleteMemberFromMemberList()}
+              />
+              <IconButton
+                iconName={"expand_content"}
+                color={"blue"}
+                action={(): any => openMemberInfoModal()}
+              />
+              <IconButton
+                iconName={"docs_add_on"}
+                color={"blue"}
+                exClass={`${!isOpenPopover && "clicked"}`}
+                action={(): any => addMemberToGroup()}
+              />
+            </div>
+          )}
+
+          {memberLocation === "memberGroup" && (
+            <div className="member-action-buttons">
+              <IconButton
+                iconName={"expand_content"}
+                color={"blue"}
+                action={(): any => openMemberInfoModal()}
+              />
+            </div>
+          )}
         </div>
-        {!isOpenPopover && (
+        {isOpenPopover === false && memberLocation === "memberList" ? (
           <div className="popover-container">
             <Select
               multi={true}
@@ -98,7 +112,7 @@ const Member: React.FC<Props> = ({
               onChange={(values) => console.log(values)}
             />
           </div>
-        )}
+        ) : null}
       </div>
     </>
   );
