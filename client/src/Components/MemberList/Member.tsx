@@ -40,17 +40,17 @@ const Member: React.FC<Props> = ({
         <IconButton
           iconName={"delete_forever"}
           color={"red"}
-          action={(): any => deleteMemberFromMemberList}
+          action={(): any => deleteMemberFromMemberList()}
         />
         <IconButton
           iconName={"expand_content"}
           color={"blue"}
-          action={(): any => openMemberInfoModal}
+          action={(): any => openMemberInfoModal()}
         />
         <IconButton
           iconName={"docs_add_on"}
           color={"blue"}
-          action={(): any => addMemberToGroup}
+          action={(): any => addMemberToGroup()}
         />
       </div>
     </div>

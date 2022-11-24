@@ -21,7 +21,7 @@ const MemberList: React.FC = (props: Props) => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
   const [viewAndEditModalIsOpen, setViewAndEditModalIsOpen] =
     useState<boolean>(false);
-  const [addMemberToGroup, setAddMemberToGroup] = useState<boolean>(false);
+  // const [addMemberToGroup, setAddMemberToGroup] = useState<boolean>(false);
 
   return (
     <div className="members-list-container">
@@ -45,6 +45,9 @@ const MemberList: React.FC = (props: Props) => {
         size={"xl"}
         action={(): any => openAddMemberModal()}
       />
+
+      {/* MODALS */}
+
       <QuestionModal
         modalTitle={"Are you sure you want to delete this member?"}
         modalDesc={
@@ -62,7 +65,14 @@ const MemberList: React.FC = (props: Props) => {
         isOpen={deleteModalIsOpen}
         whenClosing={() => questionModalClosingActions()}
       />
-      <ViewAndEditModal />
+
+      <ViewAndEditModal
+        memberID={"111"}
+        cancelBtnText={"Cancel"}
+        cancelBtnAction={() => setViewAndEditModalIsOpen(false)}
+        isOpen={viewAndEditModalIsOpen}
+        whenClosing={() => setViewAndEditModalIsOpen(false)}
+      />
     </div>
   );
 };

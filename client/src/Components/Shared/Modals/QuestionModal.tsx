@@ -41,7 +41,7 @@ const QuestionModal: React.FC<Props> = ({
       isOpen={isOpen}
       onRequestClose={() => whenClosing()}
       style={customStyles}
-      contentLabel="Example Modal"
+      contentLabel="Question Modal"
     >
       <div className="question-modal-text-container">
         <div className="q-modal-title">{modalTitle}</div>

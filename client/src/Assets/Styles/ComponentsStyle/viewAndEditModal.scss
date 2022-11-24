@@ -1,0 +1,97 @@
+@import "../variables.scss";
+
+.viewedit-modal-text-container {
+  .ve-modal-header {
+    display: flex;
+    justify-content: space-between;
+
+    .ve-modal-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    .ve-modal-edit-btn {
+      .edit-btn-actions {
+        display: flex;
+
+        div {
+          &:first-child {
+            margin-right: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  .ve-modal-table-container {
+    margin-bottom: 18px;
+
+    table {
+      border-collapse: collapse;
+      font-size: 18px;
+
+      tbody {
+        .table-image {
+          td {
+            &:first-child {
+              padding: 0px !important;
+              text-align: center;
+            }
+
+            &:last-child {
+              input {
+                &::file-selector-button {
+                  font-weight: 700;
+                  padding: 8px 12px;
+                  border-radius: 8px;
+                  background-color: $light-blue;
+                  color: $dark-blue;
+                  border: 2px solid $dark-blue;
+                  cursor: pointer;
+
+                  &:active {
+                    scale: 0.85;
+                  }
+                }
+              }
+            }
+          }
+
+          img {
+            border: 1px solid #dbdbdb;
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+
+        tr {
+          td {
+            padding: 12px;
+            &:first-child {
+              font-weight: 600;
+              //border: 1px solid blue !important;
+              padding-right: 20px !important;
+            }
+            &:last-child {
+              font-size: 16px;
+              width: 300px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .ve-modal-buttons {
+    display: flex;
+
+    .base-button {
+      &:not(:last-child) {
+        margin-right: 12px;
+      }
+    }
+  }
+}

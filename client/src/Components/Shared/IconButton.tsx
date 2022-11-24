@@ -15,7 +15,12 @@ const IconButton: React.FC<Props> = ({
   action,
 }) => {
   return (
-    <div className={`base-icon-button ${color} ${exClass}`} onClick={action()}>
+    <div
+      className={`base-icon-button ${color} ${exClass}`}
+      onClick={() => {
+        action();
+      }}
+    >
       <span className="material-symbols-rounded">{iconName}</span>
     </div>
   );
