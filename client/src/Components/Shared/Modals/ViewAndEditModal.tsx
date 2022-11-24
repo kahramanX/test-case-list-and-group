@@ -21,9 +21,10 @@ const ViewAndEditModal: React.FC<Props> = ({
 }) => {
   const [editModeIsOpen, setEditModeIsOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    console.log(editModeIsOpen);
-  }, [editModeIsOpen]);
+  function editViewModalActions() {
+    whenClosing();
+    setEditModeIsOpen(false);
+  }
 
   const customStyles = {
     content: {
@@ -40,7 +41,10 @@ const ViewAndEditModal: React.FC<Props> = ({
   return (
     <Modal
       isOpen={isOpen}
-      onRequestClose={() => whenClosing()}
+      onRequestClose={() => {
+        cancelBtnAction();
+        setEditModeIsOpen(false);
+      }}
       style={customStyles}
       contentLabel="View And Edit Modal"
     >
@@ -128,7 +132,7 @@ const ViewAndEditModal: React.FC<Props> = ({
             text={cancelBtnText}
             size={"md"}
             color={"red-border"}
-            action={cancelBtnAction}
+            action={editViewModalActions}
           />
         </div>
       </div>
