@@ -11,6 +11,9 @@ const memberSchema = Schema({
   lastName: {
     type: String,
   },
+  imageBase64: {
+    type: String,
+  },
   email: {
     type: String,
   },
