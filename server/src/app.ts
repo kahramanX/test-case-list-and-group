@@ -5,21 +5,13 @@ import router from "./routes/apiRoutes";
 const app = express();
 dotenv.config();
 
+// you need to set mergeParams: true on the router,
+// if you want to access params from the parent router
+//const itemRouter = express.Router({ mergeParams: true });
+
 app.use(express.json());
-express.urlencoded({ extended: true, limit: "1000kb" });
+express.urlencoded({ extended: true, limit: "5000kb" });
 
-app.use(router);
-
-app.get("/", (req: Request, res: Response) => {
-  console.log(req.body);
-  res.json({ hello: "uuuuuu" });
-});
-
-app.post("/", (req: Request, res: Response) => {
-  console.log("post işlemi");
-  console.log(req.body);
-
-  res.send(req.body);
-});
+app.use("/api", router);
 
 export default app;
