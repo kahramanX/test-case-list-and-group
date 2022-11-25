@@ -3,20 +3,23 @@ import * as dotenv from "dotenv";
 import router from "./routes/apiRoutes";
 
 const app = express();
+dotenv.config();
 
 app.use(express.json());
 express.urlencoded({ extended: true, limit: "1000kb" });
 
-dotenv.config();
-
 app.use(router);
 
 app.get("/", (req: Request, res: Response) => {
+  console.log(req.body);
   res.json({ hello: "uuuuuu" });
 });
 
-app.use((req: Request, res: Response) => {
-  res.json({ status: "Error", message: "There is no API endpoint" });
+app.post("/", (req: Request, res: Response) => {
+  console.log("post işlemi");
+  console.log(req.body);
+
+  res.send(req.body);
 });
 
 export default app;
