@@ -6,6 +6,7 @@ import Group from "./Group";
 import QuestionModal from "Components/Shared/Modals/QuestionModal";
 import ViewAndEditModal from "Components/Shared/Modals/ViewAndEditModal";
 import AddGroupModal from "Components/Shared/Modals/AddGroupModal";
+import ViewAndEditGroupModal from "Components/Shared/Modals/ViewAndEditGroupModal";
 
 type Props = {};
 
@@ -14,7 +15,10 @@ const GroupsList: React.FC = (props: Props) => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
   const [viewAndEditModalIsOpen, setViewAndEditModalIsOpen] =
     useState<boolean>(false);
-
+  const [deleteGroupModalIsOpen, setDeleteGroupModalIsOpen] =
+    useState<boolean>(false);
+  const [viewAndEditGroupModalIsOpen, setViewAndEditGroupModalIsOpen] =
+    useState<boolean>(false);
   function openaddGroupModal() {
     console.log("open add member modal");
     setAddGroupModal(true);
@@ -37,6 +41,8 @@ const GroupsList: React.FC = (props: Props) => {
             key={index}
             setDeleteModalIsOpen={setDeleteModalIsOpen}
             setViewAndEditModalIsOpen={setViewAndEditModalIsOpen}
+            setViewAndEditGroupModalIsOpen={setViewAndEditGroupModalIsOpen}
+            setDeleteGroupModalIsOpen={setDeleteGroupModalIsOpen}
           />
         ))}
       </div>
@@ -70,12 +76,38 @@ const GroupsList: React.FC = (props: Props) => {
         whenClosing={() => questionModalClosingActions()}
       />
 
+      <QuestionModal
+        isOpen={deleteGroupModalIsOpen}
+        modalTitle={"Are you sure you want to delete the group?"}
+        modalDesc={
+          "If you delete the group, members registered to the group will be removed from the group."
+        }
+        confirmBtnText={"Yes, I am sure"}
+        confirmBtnAction={() => {
+          console.log("confirmmmmm");
+        }}
+        cancelBtnText={"Cancel"}
+        cancelBtnAction={() => {
+          console.log("cancelllllll");
+          setDeleteGroupModalIsOpen(false);
+        }}
+        whenClosing={() => setDeleteGroupModalIsOpen(false)}
+      />
+
       <ViewAndEditModal
         memberID={"111"}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => setViewAndEditModalIsOpen(false)}
         isOpen={viewAndEditModalIsOpen}
         whenClosing={() => setViewAndEditModalIsOpen(false)}
+      />
+
+      <ViewAndEditGroupModal
+        groupID={"11222"}
+        cancelBtnText={"Cancel"}
+        cancelBtnAction={() => setViewAndEditGroupModalIsOpen(false)}
+        isOpen={viewAndEditGroupModalIsOpen}
+        whenClosing={() => setViewAndEditGroupModalIsOpen(false)}
       />
 
       <AddGroupModal

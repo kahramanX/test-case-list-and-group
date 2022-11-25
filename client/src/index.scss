@@ -98,6 +98,21 @@ input {
 
     .accordion-body {
       padding: 1rem !important;
+
+      .group-action-buttons {
+        padding: 8px 12px;
+        display: flex;
+        justify-content: left;
+        border: 2px solid $dark-blue !important;
+        background-color: $light-blue;
+        border-radius: 8px;
+
+        div {
+          &:not(:last-child) {
+            margin-right: 12px;
+          }
+        }
+      }
     }
   }
 }
