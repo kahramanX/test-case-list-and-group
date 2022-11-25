@@ -1,5 +1,7 @@
 import express, { Request, Response } from "express";
 
+//Models
+import memberModel from "models/MemberSchema";
 const router = express.Router();
 
 // Member Actions
@@ -9,8 +11,10 @@ router.get("/all-member", (req: Request, res: Response) => {
 });
 
 // Member POSTs
-router.post("/add", (req: Request, res: Response) => {
-  res.json();
+router.post("/member/add", (req: Request, res: Response) => {
+  console.log(req.body);
+
+  res.json({ info: "test" });
 });
 
 // Group Actions

@@ -35,6 +35,6 @@ const memberSchema = Schema({
   },
 });
 
-const memberModel = mongoose.model("Member", memberSchema);
+const MemberModel = mongoose.model("Member", memberSchema);
 
-export default memberModel;
+export default MemberModel;
