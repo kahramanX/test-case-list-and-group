@@ -48,3 +48,32 @@ export const addMemberController = (req: Request, res: Response) => {
     }
   });
 };
+
+export const deleteMemberController = (req: Request, res: Response) => {
+  MemberModel.findByIdAndRemove({ _id: req.params.id })
+    .then((response: any) => {
+      res.json({ status: true });
+    })
+    .catch((error: any) => {
+      res.json({ status: false });
+    });
+};
+
+export const updateMemberController = (req: Request, res: Response) => {
+  const { firstName, lastName, imageBase64, email, birthday } = req.body;
+
+  MemberModel.findByIdAndUpdate(req.params.id, {
+    firstName: firstName,
+    lastName: lastName,
+    imageBase64: imageBase64,
+    email: email,
+    birthday: birthday,
+    updatedDate: new Intl.DateTimeFormat("tr-TR", options).format(new Date()),
+  })
+    .then((response: any) => {
+      res.json({ status: true });
+    })
+    .catch((error: any) => {
+      res.json({ status: false });
+    });
+};

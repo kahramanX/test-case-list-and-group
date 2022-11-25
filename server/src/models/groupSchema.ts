@@ -15,8 +15,17 @@ const groupSchema = Schema({
     },
   ],
   createdDate: {
-    type: Date,
-    default: Date.now,
+    type: String,
+    default: new Intl.DateTimeFormat("tr-TR", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: false,
+      timeZone: "Turkey",
+    }).format(new Date()),
   },
   updatedDate: {
     type: String,
