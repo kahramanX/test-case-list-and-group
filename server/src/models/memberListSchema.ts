@@ -19,4 +19,4 @@ const memberListSchema = Schema({
 
 const memberListModel = mongoose.model("MemberList", memberListSchema);
 
-export default memberModel;
+export default memberListModel;
