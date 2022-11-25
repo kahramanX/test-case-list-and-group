@@ -180,24 +180,12 @@ const ViewAndEditModal: React.FC<Props> = ({
                   </td>
                 )}
               </tr>
-              <tr>
-                <td className="table-title">Added Groups:</td>
-
-                {!editModeIsOpen && <td>Hello, xyz, Winners, Friends</td>}
-                {editModeIsOpen && (
-                  <td>
-                    <Select
-                      multi={true}
-                      options={options}
-                      values={[]}
-                      onChange={(values) => console.log(values)}
-                    />
-                  </td>
-                )}
-              </tr>
-
               {!editModeIsOpen && (
                 <>
+                  <tr>
+                    <td className="table-title">Added Groups:</td>
+                    <td>Hello, xyz, Winners, Friends</td>
+                  </tr>
                   <tr>
                     <td className="table-title">Created Date:</td>
                     <td>1 October 2022</td>
@@ -208,6 +196,7 @@ const ViewAndEditModal: React.FC<Props> = ({
                   </tr>
                 </>
               )}
+
               {/*  <tr>
                 <td className="table-title">Notes:</td>
                 <td className="" >text</td>
