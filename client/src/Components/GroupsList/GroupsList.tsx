@@ -5,18 +5,19 @@ import Button from "Components/Shared/Button";
 import Group from "./Group";
 import QuestionModal from "Components/Shared/Modals/QuestionModal";
 import ViewAndEditModal from "Components/Shared/Modals/ViewAndEditModal";
+import AddGroupModal from "Components/Shared/Modals/AddGroupModal";
 
 type Props = {};
 
 const GroupsList: React.FC = (props: Props) => {
-  const [addMemberModal, setAddMemberModal] = useState<boolean>(false);
+  const [addGroupModal, setAddGroupModal] = useState<boolean>(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
   const [viewAndEditModalIsOpen, setViewAndEditModalIsOpen] =
     useState<boolean>(false);
 
-  function openAddMemberModal() {
+  function openaddGroupModal() {
     console.log("open add member modal");
-    setAddMemberModal(true);
+    setAddGroupModal(true);
   }
 
   function questionModalClosingActions() {
@@ -44,7 +45,7 @@ const GroupsList: React.FC = (props: Props) => {
         text={"Add Group"}
         color={"blue"}
         size={"xl"}
-        action={(): any => openAddMemberModal()}
+        action={(): any => openaddGroupModal()}
       />
 
       {/* MODALS */}
@@ -75,6 +76,14 @@ const GroupsList: React.FC = (props: Props) => {
         cancelBtnAction={() => setViewAndEditModalIsOpen(false)}
         isOpen={viewAndEditModalIsOpen}
         whenClosing={() => setViewAndEditModalIsOpen(false)}
+      />
+
+      <AddGroupModal
+        isOpen={addGroupModal}
+        confirmBtnText={"Add"}
+        cancelBtnText={"Cancel"}
+        cancelBtnAction={() => setAddGroupModal(false)}
+        whenClosing={() => setAddGroupModal(false)}
       />
     </div>
   );
