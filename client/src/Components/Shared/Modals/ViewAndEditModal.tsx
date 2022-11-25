@@ -196,32 +196,18 @@ const ViewAndEditModal: React.FC<Props> = ({
                 )}
               </tr>
 
-              <tr>
-                <td className="table-title">Created Date:</td>
-                {!editModeIsOpen && <td>1 October 2022</td>}
-                {editModeIsOpen && (
-                  <td>
-                    <input
-                      type={"date"}
-                      //value={""}
-                      className="modal-input"
-                    />
-                  </td>
-                )}
-              </tr>
-              <tr>
-                <td className="table-title">Updated Date:</td>
-                {!editModeIsOpen && <td>1 October 2022</td>}
-                {editModeIsOpen && (
-                  <td>
-                    <input
-                      type={"date"}
-                      //value={""}
-                      className="modal-input"
-                    />
-                  </td>
-                )}
-              </tr>
+              {!editModeIsOpen && (
+                <>
+                  <tr>
+                    <td className="table-title">Created Date:</td>
+                    <td>1 October 2022</td>
+                  </tr>
+                  <tr>
+                    <td className="table-title">Updated Date:</td>
+                    <td>1 October 2022</td>
+                  </tr>
+                </>
+              )}
               {/*  <tr>
                 <td className="table-title">Notes:</td>
                 <td className="" >text</td>

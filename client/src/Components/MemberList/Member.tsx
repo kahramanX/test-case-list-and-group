@@ -30,6 +30,11 @@ const Member: React.FC<Props> = ({
     setDeleteModalIsOpen(true);
   }
 
+  function removeMemberFromGroup(): any {
+    console.log("leave group");
+    setDeleteModalIsOpen(true);
+  }
+
   interface Ioptions {
     label: string;
     value: string;
@@ -99,6 +104,11 @@ const Member: React.FC<Props> = ({
                 iconName={"expand_content"}
                 color={"blue"}
                 action={(): any => openMemberInfoModal()}
+              />
+              <IconButton
+                iconName={"logout"}
+                color={"red"}
+                action={(): any => removeMemberFromGroup()}
               />
             </div>
           )}
