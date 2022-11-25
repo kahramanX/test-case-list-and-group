@@ -1,0 +1,46 @@
+@import "../variables.scss";
+
+.accordion-item {
+  .accordion-header {
+    .accordion-button {
+      border-radius: 12px !important;
+      box-shadow: none !important;
+      color: $dark-blue !important;
+      font-weight: 700;
+      background-color: $light-blue;
+    }
+  }
+
+  .accordion-collapse {
+    border: 3px solid $light-blue !important;
+    border-radius: 12px;
+
+    .accordion-body {
+      padding: 1rem !important;
+
+      .group-header-container {
+        padding: 8px 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px solid $dark-blue !important;
+        background-color: $light-blue;
+        border-radius: 8px;
+
+        .group-header-text {
+          color: $dark-blue;
+          font-weight: 500;
+        }
+
+        .group-action-buttons {
+          display: flex;
+          div {
+            &:not(:last-child) {
+              margin-right: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "Assets/Styles/groupsList.scss";
+import "Assets/Styles/ComponentsStyle/accordion.scss";
+
 import Badge from "Components/Shared/Badge";
 import Button from "Components/Shared/Button";
 import Group from "./Group";

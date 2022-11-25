@@ -29,19 +29,22 @@ const Group: React.FC<Props> = ({
   return (
     <div>
       <Accordion title={"Group 1"}>
-        <div className="group-action-buttons">
-          <IconButton
-            iconName={"delete_forever"}
-            color={"red-border"}
-            //exClass={`${!isOpenPopover && "clicked"}`}
-            action={(): any => deleteGroupModalHandle()}
-          />
-          <IconButton
-            iconName={"expand_content"}
-            color={"blue-border"}
-            //exClass={`${!isOpenPopover && "clicked"}`}
-            action={(): any => viewAndEditGroupModalHandle()}
-          />
+        <div className="group-header-container">
+          <div className="group-header-text">Group Settings:</div>
+          <div className="group-action-buttons">
+            <IconButton
+              iconName={"delete_forever"}
+              color={"red-border"}
+              //exClass={`${!isOpenPopover && "clicked"}`}
+              action={(): any => deleteGroupModalHandle()}
+            />
+            <IconButton
+              iconName={"expand_content"}
+              color={"blue-border"}
+              //exClass={`${!isOpenPopover && "clicked"}`}
+              action={(): any => viewAndEditGroupModalHandle()}
+            />
+          </div>
         </div>
         <div className="member-list">
           {[0, 1, 2, 3].map((index) => (
