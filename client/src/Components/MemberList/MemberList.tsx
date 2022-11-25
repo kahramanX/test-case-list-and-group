@@ -31,19 +31,22 @@ const MemberList: React.FC = (props: Props) => {
         <div className="members-list-title">Member List</div>
         <Badge text={"31"} color={"blue"} exClass={"member-count"} />
       </div>
+
       <div className="members-list">
         {[0, 1, 2, 3, 4, 5, 6, 7].map((index) => (
           <Member
             key={index}
             setDeleteModalIsOpen={setDeleteModalIsOpen}
             setViewAndEditModalIsOpen={setViewAndEditModalIsOpen}
+            memberLocation={"memberList"}
           />
         ))}
       </div>
+
       <Button
         iconName={"add"}
         text={"Add Member"}
-        color={"blue-border"}
+        color={"blue"}
         size={"xl"}
         action={(): any => openAddMemberModal()}
       />
