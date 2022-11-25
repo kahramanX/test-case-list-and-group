@@ -134,17 +134,6 @@ const AddMemberModal: React.FC<Props> = ({
                   />
                 </td>
               </tr>
-              <tr>
-                <td className="table-title">Add To Groups:</td>
-                <td>
-                  <Select
-                    multi={true}
-                    options={options}
-                    values={[]}
-                    onChange={(values) => console.log(values)}
-                  />
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>

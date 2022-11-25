@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const memberSchema = Schema({
   memberID: {
-    type: Number,
+    type: String,
   },
   firstName: {
     type: String,
@@ -18,7 +18,7 @@ const memberSchema = Schema({
     type: String,
   },
   birthday: {
-    type: Date,
+    type: String,
   },
   groups: [
     {
@@ -27,14 +27,23 @@ const memberSchema = Schema({
     },
   ],
   createdDate: {
-    type: Date,
-    default: Date.now,
+    type: String,
+    default: new Intl.DateTimeFormat("tr-TR", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: false,
+      timeZone: "Turkey",
+    }).format(new Date()),
   },
   updatedDate: {
-    type: Date,
+    type: String,
   },
 });
 
-const memberModel = mongoose.model("Member", memberSchema);
+const MemberModel = mongoose.model("Member", memberSchema);
 
-export default memberModel;
+export default MemberModel;

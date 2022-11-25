@@ -17,6 +17,6 @@ const groupListSchema = Schema({
   },
 });
 
-const groupListModel = mongoose.model("GroupList", groupListSchema);
+const GroupListModel = mongoose.model("GroupList", groupListSchema);
 
-export default groupListModel;
+export default GroupListModel;
