@@ -101,14 +101,14 @@ const Member: React.FC<Props> = ({
           {memberLocation === "memberGroup" && (
             <div className="member-action-buttons">
               <IconButton
-                iconName={"expand_content"}
-                color={"blue"}
-                action={(): any => openMemberInfoModal()}
-              />
-              <IconButton
                 iconName={"logout"}
                 color={"red"}
                 action={(): any => removeMemberFromGroup()}
+              />
+              <IconButton
+                iconName={"expand_content"}
+                color={"blue"}
+                action={(): any => openMemberInfoModal()}
               />
             </div>
           )}
