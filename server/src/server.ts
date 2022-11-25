@@ -2,7 +2,7 @@ import app from "./app";
 import mongoose from "mongoose";
 
 mongoose
-  .connect(`${process.env.MONGODB_LINK}`)
+  .connect(`${process.env.MONGODB_LINK}`, { dbName: "list_and_group" })
   .then((res) => {
     console.log("Database Successfully Connected! ✅ ");
   })

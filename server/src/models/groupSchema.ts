@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const groupSchema = Schema({
   groupID: {
-    type: Number,
+    type: String,
   },
   groupName: {
     type: String,
@@ -19,7 +19,7 @@ const groupSchema = Schema({
     default: Date.now,
   },
   updatedDate: {
-    type: Date,
+    type: String,
   },
 });
 

@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
+import { addMemberController } from "../controllers/memberListController";
+import { addGroupController } from "../controllers/groupListController";
 
-//Models
-import memberModel from "models/MemberSchema";
 const router = express.Router();
 
 // Member Actions
@@ -11,11 +11,7 @@ router.get("/all-member", (req: Request, res: Response) => {
 });
 
 // Member POSTs
-router.post("/member/add", (req: Request, res: Response) => {
-  console.log(req.body);
-
-  res.json({ info: "test" });
-});
+router.post("/member/add", addMemberController);
 
 // Group Actions
 // Group GETs
@@ -24,5 +20,6 @@ router.get("/all-group", (req: Request, res: Response) => {
 });
 
 // Group POSTs
+router.post("/group/add", addGroupController);
 
 export default router;
