@@ -46,7 +46,7 @@ const Member: React.FC<Props> = ({
       value: "label1",
     },
     {
-      label: "label1",
+      label: "label2",
       value: "label2",
     },
     {
