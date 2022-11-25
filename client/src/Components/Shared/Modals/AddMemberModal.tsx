@@ -1,5 +1,4 @@
 import React from "react";
-import Select from "react-dropdown-select";
 import Modal from "react-modal";
 import Button from "../Button";
 
