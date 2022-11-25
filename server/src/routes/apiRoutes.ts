@@ -1,23 +1,25 @@
 import express, { Request, Response } from "express";
-import { addMemberController } from "../controllers/memberListController";
-import { addGroupController } from "../controllers/groupListController";
+import {
+  addMemberController,
+  getMembersController,
+} from "../controllers/memberListController";
+import {
+  addGroupController,
+  getGroupController,
+} from "../controllers/groupListController";
 
 const router = express.Router();
 
 // Member Actions
 // Member GETs
-router.get("/all-member", (req: Request, res: Response) => {
-  res.json({ info: "all member" });
-});
+router.get("/member/all", getMembersController);
 
 // Member POSTs
 router.post("/member/add", addMemberController);
 
 // Group Actions
 // Group GETs
-router.get("/all-group", (req: Request, res: Response) => {
-  res.json({ info: "all group" });
-});
+router.get("/group/all", getGroupController);
 
 // Group POSTs
 router.post("/group/add", addGroupController);
