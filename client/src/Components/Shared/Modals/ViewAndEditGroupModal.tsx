@@ -101,6 +101,10 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
                     <td className="table-title">Updated Date:</td>
                     <td>1 October 2022</td>
                   </tr>
+                  <tr>
+                    <td className="table-title">Members:</td>
+                    <td>Ege kahraman, Ece Yılmaz</td>
+                  </tr>
                 </>
               )}
             </tbody>
