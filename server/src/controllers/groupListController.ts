@@ -26,9 +26,15 @@ export const addGroupController = (req: Request, res: Response) => {
 };
 
 //GET
-export const getGroupController = (req: Request, res: Response) => {
+export const getAllGroupController = (req: Request, res: Response) => {
   GroupModel.find().then((response: any) => {
     res.json({ groupCount: response.length, data: response });
+  });
+};
+
+export const getSingleGroupController = (req: Request, res: Response) => {
+  GroupModel.findOne({ _id: req.params.id }).then((response: any) => {
+    res.json({ data: response });
   });
 };
 

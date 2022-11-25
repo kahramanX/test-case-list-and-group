@@ -1,33 +1,37 @@
 import express, { Request, Response } from "express";
 import {
   addMemberController,
-  getMembersController,
+  getAllMemberController,
   deleteMemberController,
   updateMemberController,
+  getSingleMemberController,
 } from "../controllers/memberListController";
 import {
   addGroupController,
-  getGroupController,
+  getAllGroupController,
   deleteGroupController,
   updateGroupController,
+  getSingleGroupController,
 } from "../controllers/groupListController";
 
 const router = express.Router();
 
 // Member Actions
-// Member GETs
-router.get("/member/all", getMembersController);
+// Member GET
+router.get("/member/all", getAllMemberController);
+router.get("/member/:id", getSingleMemberController);
 
-// Member POSTs
+// Member POST
 router.post("/member/add", addMemberController);
 router.post("/member/delete/:id", deleteMemberController);
 router.post("/member/update/:id", updateMemberController);
 
 // Group Actions
-// Group GETs
-router.get("/group/all", getGroupController);
+// Group GET
+router.get("/group/all", getAllGroupController);
+router.get("/member/:id", getSingleGroupController);
 
-// Group POSTs
+// Group POST
 router.post("/group/add", addGroupController);
 router.post("/group/delete/:id", deleteGroupController);
 router.post("/group/update/:id", updateGroupController);

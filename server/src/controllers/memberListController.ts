@@ -9,9 +9,15 @@ import MemberListModel from "../models/MemberListSchema";
 // Member Actions
 
 // GET
-export const getMembersController = (req: Request, res: Response) => {
+export const getAllMemberController = (req: Request, res: Response) => {
   MemberModel.find().then((response: any) => {
     res.json({ memberCount: response.length, data: response });
+  });
+};
+
+export const getSingleMemberController = (req: Request, res: Response) => {
+  MemberModel.findOne({ _id: req.params.id }).then((response: any) => {
+    res.json({ data: response });
   });
 };
 
