@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
+import { options } from "../types/types";
 
 //Models
 import MemberModel from "../models/MemberSchema";
@@ -7,19 +8,14 @@ import MemberListModel from "../models/MemberListSchema";
 
 // Member Actions
 
-const options: any = {
-  year: "numeric",
-  month: "numeric",
-  day: "numeric",
-  hour: "numeric",
-  minute: "numeric",
-  second: "numeric",
-  hour12: false,
-  timeZone: "Turkey",
+// GET
+export const getMembersController = (req: Request, res: Response) => {
+  MemberModel.find().then((response: any) => {
+    res.json({ memberCount: response.length, data: response });
+  });
 };
-// Member GETs
 
-// Member POSTs
+// POST
 export const addMemberController = (req: Request, res: Response) => {
   const { firstName, lastName, imageBase64, email, birthday } = req.body;
 
@@ -51,6 +47,4 @@ export const addMemberController = (req: Request, res: Response) => {
       console.log(err);
     }
   });
-
-  //member liste eklenecek ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
 };
