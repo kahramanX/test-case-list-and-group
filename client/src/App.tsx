@@ -5,6 +5,7 @@ import "./index.scss";
 import Modal from "react-modal";
 import axios from "axios";
 import { IGroup, IGroupAll, IMember, IMemberAll } from "Types/types";
+import { ToastContainer } from "react-toastify";
 
 Modal.setAppElement("#root");
 const App: React.FC = () => {
@@ -50,6 +51,7 @@ const App: React.FC = () => {
         selectedMemberID={selectedMemberID}
         groupsData={groupDataFromApi && groupDataFromApi?.data}
       />
+      <ToastContainer />
     </div>
   );
 };

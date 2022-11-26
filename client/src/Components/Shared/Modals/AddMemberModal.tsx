@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import Button from "../Button";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { IAddMemberForm } from "Types/types";
+import { toast } from "react-toastify";
 
 type Props = {
   isOpen: boolean;
@@ -55,11 +56,33 @@ const AddMemberModal: React.FC<Props> = ({
   }
 
   function postMemberInfoToApi(postData: IAddMemberForm) {
+    console.log(postData);
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/member/add`, postData)
       .then((response: any) => {
-        // let { data } = response;
-        //setMemberDataFromApi(data);
+        if (response.status) {
+          reset();
+          toast.success("Member Added To List!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          toast.error("Error!!!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
       });
   }
 
@@ -77,11 +100,8 @@ const AddMemberModal: React.FC<Props> = ({
         <form
           onSubmit={handleSubmit((data: any) => {
             console.log({ ...data, imageBase64: getBase64Code });
-            console.log("saved");
+            postMemberInfoToApi({ ...data, imageBase64: getBase64Code });
             getMembersDataFromAPI();
-            //postMemberInfoToApi();
-            cancelBtnAction();
-            reset();
           })}
         >
           <div className="ve-modal-header">
