@@ -10,19 +10,27 @@ import ViewAndEditModal from "Components/Shared/Modals/ViewAndEditModal";
 import AddGroupModal from "Components/Shared/Modals/AddGroupModal";
 import ViewAndEditGroupModal from "Components/Shared/Modals/ViewAndEditGroupModal";
 import { IGroup } from "Types/types";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 type Props = {
   groupsData: IGroup[] | undefined;
   setSelectedMemberID: React.Dispatch<React.SetStateAction<string | undefined>>;
   selectedMemberID: string | undefined;
   getMembersDataFromAPI: any;
+  getGroupsDataFromAPI: any;
+  setSelectedGroupID: React.Dispatch<React.SetStateAction<string | undefined>>;
+  selectedGroupID: string | undefined;
 };
 
 const GroupsList: React.FC<Props> = ({
   groupsData,
   setSelectedMemberID,
+  setSelectedGroupID,
   selectedMemberID,
+  selectedGroupID,
   getMembersDataFromAPI,
+  getGroupsDataFromAPI,
 }) => {
   const [addGroupModal, setAddGroupModal] = useState<boolean>(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
@@ -43,6 +51,37 @@ const GroupsList: React.FC<Props> = ({
     setDeleteModalIsOpen(false);
   }
 
+  function deleteGroupFromGroupListWithAPI(groupID: string | undefined) {
+    console.log(groupID);
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/api/group/delete/${groupID}`)
+      .then((response: any) => {
+        console.log(response);
+        if (response.status) {
+          toast.success("Group Deleted From List!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          toast.error("Error!!!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      });
+  }
+
   return (
     <div className="members-list-container">
       <div className="members-list-title-row">
@@ -54,7 +93,7 @@ const GroupsList: React.FC<Props> = ({
         />
       </div>
       <div className="member-list">
-        {[1, 2, 3].map((index) => (
+        {groupsData?.map((groupData, index) => (
           <Group
             key={index}
             setDeleteModalIsOpen={setDeleteModalIsOpen}
@@ -62,8 +101,17 @@ const GroupsList: React.FC<Props> = ({
             setViewAndEditGroupModalIsOpen={setViewAndEditGroupModalIsOpen}
             setDeleteGroupModalIsOpen={setDeleteGroupModalIsOpen}
             setSelectedMemberID={setSelectedMemberID}
+            setSelectedGroupID={setSelectedGroupID}
+            getGroupsDataFromAPI={getGroupsDataFromAPI}
+            groupData={groupData}
           />
         ))}
+
+        {groupsData?.length === 0 && (
+          <div className="center-no-data-text">
+            There is no member, please add member
+          </div>
+        )}
       </div>
       <Button
         iconName={"add"}
@@ -85,11 +133,11 @@ const GroupsList: React.FC<Props> = ({
         }
         confirmBtnText={"Yes, I am sure"}
         confirmBtnAction={() => {
-          console.log("confirmmmmm");
+          console.log("confirm");
         }}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => {
-          console.log("cancelllllll");
+          console.log("cancel");
           setDeleteModalIsOpen(false);
         }}
         whenClosing={() => questionModalClosingActions()}
@@ -107,8 +155,9 @@ const GroupsList: React.FC<Props> = ({
         }}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => {
-          console.log("cancelllllll");
+          console.log("cancel");
           setDeleteGroupModalIsOpen(false);
+          deleteGroupFromGroupListWithAPI(selectedGroupID);
         }}
         whenClosing={() => setDeleteGroupModalIsOpen(false)}
       />

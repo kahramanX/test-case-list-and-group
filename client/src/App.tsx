@@ -14,12 +14,16 @@ const App: React.FC = () => {
   const [selectedMemberID, setSelectedMemberID] = useState<string | undefined>(
     ""
   );
+  const [selectedGroupID, setSelectedGroupID] = useState<string | undefined>(
+    ""
+  );
 
   function getMembersDataFromAPI() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/member/all`)
       .then((response: any) => {
         let { data } = response;
+        console.log(response);
         setMemberDataFromApi(data);
       });
   }
@@ -51,6 +55,9 @@ const App: React.FC = () => {
         selectedMemberID={selectedMemberID}
         groupsData={groupDataFromApi && groupDataFromApi?.data}
         getMembersDataFromAPI={getMembersDataFromAPI}
+        getGroupsDataFromAPI={getGroupsDataFromAPI}
+        setSelectedGroupID={setSelectedGroupID}
+        selectedGroupID={selectedGroupID}
       />
       <ToastContainer />
     </div>
