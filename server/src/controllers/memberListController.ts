@@ -67,11 +67,12 @@ export const deleteMemberController = (req: Request, res: Response) => {
 };
 
 export const updateMemberController = (req: Request, res: Response) => {
-  const { firstName, lastName, imageBase64, email, birthday } = req.body;
+  const { firstName, lastName, imageBase64, email, birthday, phone } = req.body;
 
   MemberModel.findByIdAndUpdate(req.params.id, {
     firstName: firstName,
     lastName: lastName,
+    phone: phone,
     imageBase64: imageBase64,
     email: email,
     birthday: birthday,

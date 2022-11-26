@@ -21,11 +21,6 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
 }) => {
   const [editModeIsOpen, setEditModeIsOpen] = useState<boolean>(false);
 
-  function editViewGroupModalActions() {
-    whenClosing();
-    setEditModeIsOpen(false);
-  }
-
   const customStyles = {
     content: {
       top: "50%",
@@ -37,6 +32,11 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
       width: "700px",
     },
   };
+
+  function editViewGroupModalCancelActions() {
+    whenClosing();
+    setEditModeIsOpen(false);
+  }
 
   return (
     <Modal
@@ -115,7 +115,7 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
             text={cancelBtnText}
             size={"md"}
             color={"red-border"}
-            action={editViewGroupModalActions}
+            action={editViewGroupModalCancelActions}
           />
         </div>
       </div>

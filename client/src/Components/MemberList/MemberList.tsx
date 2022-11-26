@@ -132,6 +132,7 @@ const MemberList: React.FC<Props> = ({
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => setViewAndEditModalIsOpen(false)}
         isOpen={viewAndEditModalIsOpen}
+        getMembersDataFromAPI={getMembersDataFromAPI}
         whenClosing={() => setViewAndEditModalIsOpen(false)}
       />
 
@@ -140,8 +141,8 @@ const MemberList: React.FC<Props> = ({
         confirmBtnText={"Add"}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => setAddMemberModal(false)}
-        whenClosing={() => setAddMemberModal(false)}
         getMembersDataFromAPI={getMembersDataFromAPI}
+        whenClosing={() => setAddMemberModal(false)}
       />
     </div>
   );

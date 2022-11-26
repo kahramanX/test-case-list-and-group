@@ -15,12 +15,14 @@ type Props = {
   groupsData: IGroup[] | undefined;
   setSelectedMemberID: React.Dispatch<React.SetStateAction<string | undefined>>;
   selectedMemberID: string | undefined;
+  getMembersDataFromAPI: any;
 };
 
 const GroupsList: React.FC<Props> = ({
   groupsData,
   setSelectedMemberID,
   selectedMemberID,
+  getMembersDataFromAPI,
 }) => {
   const [addGroupModal, setAddGroupModal] = useState<boolean>(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
@@ -117,6 +119,7 @@ const GroupsList: React.FC<Props> = ({
         cancelBtnAction={() => setViewAndEditModalIsOpen(false)}
         isOpen={viewAndEditModalIsOpen}
         whenClosing={() => setViewAndEditModalIsOpen(false)}
+        getMembersDataFromAPI={getMembersDataFromAPI}
       />
 
       <ViewAndEditGroupModal
