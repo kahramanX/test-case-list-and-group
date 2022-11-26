@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { options } from "../types/types";
 
 //Models
-import GroupModel from "../models/GroupSchema";
+import GroupModel from "../models/groupSchema";
 export const addGroupController = (req: Request, res: Response) => {
   const { groupName } = req.body;
 

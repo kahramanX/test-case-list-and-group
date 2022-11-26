@@ -1,5 +1,5 @@
 import React from "react";
-import "Assets/Styles/ComponentsStyle/iconButton.scss";
+import "Assets/Styles/componentsStyle/iconButton.scss";
 
 type Props = {
   iconName: string;

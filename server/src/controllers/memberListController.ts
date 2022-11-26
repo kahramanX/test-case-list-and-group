@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from "uuid";
 import { options } from "../types/types";
 
 //Models
-import MemberModel from "../models/MemberSchema";
-import MemberListModel from "../models/MemberListSchema";
+import MemberModel from "../models/memberSchema";
+import MemberListModel from "../models/memberListSchema";
 
 // Member Actions
 

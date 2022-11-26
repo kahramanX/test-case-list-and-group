@@ -1,5 +1,5 @@
 import React from "react";
-import "Assets/Styles/ComponentsStyle/button.scss";
+import "Assets/Styles/componentsStyle/button.scss";
 
 type Props = {
   text: string;
