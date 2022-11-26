@@ -3,7 +3,6 @@ import Modal from "react-modal";
 import "Assets/Styles/ComponentsStyle/viewAndEditModal.scss";
 import Button from "../Button";
 import IconButton from "../IconButton";
-import Select from "react-dropdown-select";
 
 type Props = {
   memberID: string;

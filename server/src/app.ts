@@ -5,12 +5,14 @@ import router from "./routes/apiRoutes";
 const app = express();
 dotenv.config();
 
-// you need to set mergeParams: true on the router,
-// if you want to access params from the parent router
-//const itemRouter = express.Router({ mergeParams: true });
-
 app.use(express.json());
 express.urlencoded({ extended: true, limit: "5000kb" });
+
+// THIS CODE FIX THAT CORS ERROR
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 app.use("/api", router);
 
