@@ -25,14 +25,14 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
   whenClosing,
   getGroupsDataFromAPI,
 }) => {
-  const [editModeIsOpen, setEditModeIsOpen] = useState<boolean>(false);
-  const [singleGroupDataFromApi, setsingleGroupDataFromApi] = useState<any>();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<any>();
+  const [editModeIsOpen, setEditModeIsOpen] = useState<boolean>(false);
+  const [singleGroupDataFromApi, setsingleGroupDataFromApi] = useState<any>();
 
   function getSingleGroupDataFromAPI(groupID: string | undefined) {
     if (groupID) {
@@ -46,17 +46,15 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
   }
 
   function postSingleGroupUpdatedInfosToAPI(postData: any) {
-    console.log("test 1");
+    console.log("postData,", postData);
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/api/group/update/${groupID}`,
         postData
       )
       .then((response: any) => {
-        console.log("test 2");
         console.log("response1", response);
         if (response.data.status) {
-          console.log("test 3");
           getSingleGroupDataFromAPI(groupID);
           getGroupsDataFromAPI();
           cancelBtnAction();
@@ -71,7 +69,6 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
             theme: "colored",
           });
         } else {
-          console.log("test 4");
           toast.error("Error!!!", {
             position: "top-center",
             autoClose: 5000,
@@ -83,7 +80,6 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
             theme: "colored",
           });
         }
-        console.log("test 5");
       });
   }
 
@@ -122,9 +118,9 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
     >
       <form
         onSubmit={handleSubmit((data: any) => {
-          console.log("data1", data);
+          console.log("data11111111", data);
           postSingleGroupUpdatedInfosToAPI(data);
-          getGroupsDataFromAPI();
+          setEditModeIsOpen(false);
           reset();
         })}
       >
@@ -169,7 +165,7 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
                         className="modal-input"
                         {...register("groupName", { required: true })}
                       />
-                      {errors.groupName && (
+                      {errors.ananinami && (
                         <span className="required">*Required</span>
                       )}
                     </td>
@@ -211,7 +207,7 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
                 size={"md"}
                 color={"blue"}
                 action={() => {
-                  setEditModeIsOpen(false);
+                  //setEditModeIsOpen(false);
                 }}
               />
             )}

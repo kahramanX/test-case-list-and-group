@@ -348,11 +348,6 @@ const ViewAndEditModal: React.FC<Props> = ({
                     </tr>
                   </>
                 )}
-
-                {/*  <tr>
-                <td className="table-title">Notes:</td>
-                <td className="" >text</td>
-              </tr> */}
               </tbody>
             </table>
           </div>

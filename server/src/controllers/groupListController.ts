@@ -52,17 +52,17 @@ export const deleteGroupController = (req: Request, res: Response) => {
 export const updateGroupController = (req: Request, res: Response) => {
   const { groupName } = req.body;
 
+  console.log("groupName", groupName);
+
   GroupModel.findByIdAndUpdate(req.params.id, {
     groupName: groupName,
     updatedDate: new Intl.DateTimeFormat("tr-TR", options).format(new Date()),
   })
     .then((response: any) => {
-      console.log(response);
       console.log("Group Updated ✅ ");
       res.json({ status: true });
     })
     .catch((error: any) => {
-      console.log(error);
       console.log("Group Could Not Update ❌ ");
       res.json({ status: false });
     });

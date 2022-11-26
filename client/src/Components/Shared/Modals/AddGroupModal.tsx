@@ -46,8 +46,10 @@ const AddGroupModal: React.FC<Props> = ({
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/group/add`, postData)
       .then((response: any) => {
-        console.log(response);
         if (response.status) {
+          cancelBtnAction();
+          getGroupsDataFromAPI();
+          reset();
           toast.success("Group Added To List!", {
             position: "top-center",
             autoClose: 5000,
@@ -57,9 +59,6 @@ const AddGroupModal: React.FC<Props> = ({
             progress: undefined,
             theme: "colored",
           });
-          cancelBtnAction();
-          getGroupsDataFromAPI();
-          reset();
         } else {
           toast.error("Error!!!", {
             position: "top-center",

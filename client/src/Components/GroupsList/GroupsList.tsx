@@ -52,7 +52,6 @@ const GroupsList: React.FC<Props> = ({
   }
 
   function deleteGroupFromGroupListWithAPI(groupID: string | undefined) {
-    console.log(groupID);
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/group/delete/${groupID}`)
       .then((response: any) => {
