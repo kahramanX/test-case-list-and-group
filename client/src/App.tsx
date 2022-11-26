@@ -36,7 +36,7 @@ const App: React.FC = () => {
   useEffect(() => {
     getMembersDataFromAPI();
     getGroupsDataFromAPI();
-  }, []);
+  }, [selectedMemberID]);
 
   return (
     <div className="App">
