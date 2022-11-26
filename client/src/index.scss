@@ -50,6 +50,12 @@ input {
 
 .ReactModal__Content {
   border-radius: 14px !important;
+
+  .required {
+    font-weight: 700;
+    font-size: 12px;
+    color: $dark-red;
+  }
 }
 
 .ReactModal__Overlay--after-open {

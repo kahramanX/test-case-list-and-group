@@ -39,19 +39,19 @@ export const addMemberController = (req: Request, res: Response) => {
   addMember.save((err: any, result: any) => {
     if (result) {
       console.log("Member Added ✅ ");
+      res.json({ status: true });
 
-      //const addToMemberList = MemberListModel({});
-
-      MemberListModel.findOne({ _id: result._id })
+      /* MemberListModel.findOne({ _id: result._id })
         .populate("MemberList")
         .then(function (memberList: any) {
           //          if (err1) return err1;
           console.log("The xxxx is ", memberList);
           // prints "The author is Ian Fleming"
-        });
+        }); */
     } else {
       console.log("Member Could Not Added ❌ ");
       console.log(err);
+      res.json({ status: false });
     }
   });
 };
