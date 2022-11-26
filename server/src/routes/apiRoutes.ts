@@ -29,7 +29,7 @@ router.post("/member/update/:id", updateMemberController);
 // Group Actions
 // Group GET
 router.get("/group/all", getAllGroupController);
-router.get("/member/:id", getSingleGroupController);
+router.get("/group/:id", getSingleGroupController);
 
 // Group POST
 router.post("/group/add", addGroupController);

@@ -121,6 +121,7 @@ const AddMemberModal: React.FC<Props> = ({
                   <td>
                     <input
                       type="file"
+                      max={"5"}
                       id="img"
                       // name="img"
                       accept="image/*"
@@ -130,8 +131,12 @@ const AddMemberModal: React.FC<Props> = ({
                         console.log(event.target);
                       }}
                     />
+                    <span className="required">*Max 5MB</span>
                     {errors.imageBase64 && (
-                      <span className="required">*Required</span>
+                      <>
+                        <br />
+                        <span className="required">*Required</span>
+                      </>
                     )}
                   </td>
                 </tr>
