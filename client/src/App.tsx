@@ -50,6 +50,7 @@ const App: React.FC = () => {
         setSelectedMemberID={setSelectedMemberID}
         selectedMemberID={selectedMemberID}
         groupsData={groupDataFromApi && groupDataFromApi?.data}
+        getMembersDataFromAPI={getMembersDataFromAPI}
       />
       <ToastContainer />
     </div>

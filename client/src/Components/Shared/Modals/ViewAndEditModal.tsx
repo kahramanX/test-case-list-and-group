@@ -14,6 +14,7 @@ type Props = {
   cancelBtnAction?: any;
   isOpen: boolean;
   whenClosing: any;
+  getMembersDataFromAPI: any;
 };
 
 interface Ioptions {
@@ -27,6 +28,7 @@ const ViewAndEditModal: React.FC<Props> = ({
   cancelBtnAction,
   isOpen,
   whenClosing,
+  getMembersDataFromAPI,
 }) => {
   const {
     register,
@@ -71,11 +73,12 @@ const ViewAndEditModal: React.FC<Props> = ({
 
   function postSingleMemberUpdatedInfosToAPI(postData: IAddMemberForm) {
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/member/add`, postData)
+      .post(`${process.env.REACT_APP_API_URL}/api/member/update/`, postData)
       .then((response: any) => {
         if (response.status) {
           reset();
           setGetBase64Code(undefined);
+          getMembersDataFromAPI();
           toast.success("Member Info Updated!", {
             position: "top-center",
             autoClose: 5000,
@@ -147,8 +150,11 @@ const ViewAndEditModal: React.FC<Props> = ({
       <form
         onSubmit={handleSubmit((data: any) => {
           console.log({ ...data, imageBase64: getBase64Code });
-          //postMemberInfoToApi({ ...data, imageBase64: getBase64Code });
-          //getMembersDataFromAPI();
+          postSingleMemberUpdatedInfosToAPI({
+            ...data,
+            imageBase64: getBase64Code,
+          });
+          getMembersDataFromAPI();
         })}
       >
         <div className="viewedit-modal-text-container">
@@ -364,7 +370,7 @@ const ViewAndEditModal: React.FC<Props> = ({
                   //getMembersDataFromAPI();
                   //setEditModeIsOpen(false);
                   //reset();
-                  // save ettikten sonra bilgileri tekrar çek getSingleMemberDataFromAPI(memberID);
+                  getSingleMemberDataFromAPI(memberID);
                 }}
               />
             )}
