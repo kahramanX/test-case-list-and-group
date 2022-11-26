@@ -8,6 +8,7 @@ import ViewAndEditModal from "Components/Shared/Modals/ViewAndEditModal";
 import AddMemberModal from "Components/Shared/Modals/AddMemberModal";
 import { IMember } from "Types/types";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 type Props = {
   membersData: IMember[] | undefined;
@@ -42,6 +43,28 @@ const MemberList: React.FC<Props> = ({
       .post(`${process.env.REACT_APP_API_URL}/api/member/delete/${memberID}`)
       .then((response: any) => {
         console.log(response);
+        if (response.status) {
+          toast.success("Member Deleted From List!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          toast.error("Error!!!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
       });
   }
 
@@ -98,15 +121,14 @@ const MemberList: React.FC<Props> = ({
         }}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => {
-          console.log("cancelllllll");
+          console.log("cancel");
           setDeleteModalIsOpen(false);
         }}
         isOpen={deleteModalIsOpen}
         whenClosing={() => questionModalClosingActions()}
       />
-
       <ViewAndEditModal
-        memberID={"111"}
+        memberID={selectedMemberID}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => setViewAndEditModalIsOpen(false)}
         isOpen={viewAndEditModalIsOpen}

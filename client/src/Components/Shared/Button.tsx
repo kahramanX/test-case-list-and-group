@@ -8,6 +8,7 @@ type Props = {
   color: string;
   size?: string;
   action?: any;
+  btnType?: "button" | "submit";
 };
 
 const Button: React.FC<Props> = ({
@@ -17,9 +18,11 @@ const Button: React.FC<Props> = ({
   size = "",
   color,
   action,
+  btnType = "button",
 }) => {
   return (
     <button
+      type={btnType}
       className={`base-button ${color} ${size}  ${exClass}`}
       onClick={() => action()}
     >

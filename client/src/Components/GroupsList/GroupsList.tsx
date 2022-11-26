@@ -17,7 +17,11 @@ type Props = {
   selectedMemberID: string | undefined;
 };
 
-const GroupsList: React.FC<Props> = ({ groupsData, setSelectedMemberID }) => {
+const GroupsList: React.FC<Props> = ({
+  groupsData,
+  setSelectedMemberID,
+  selectedMemberID,
+}) => {
   const [addGroupModal, setAddGroupModal] = useState<boolean>(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
   const [viewAndEditModalIsOpen, setViewAndEditModalIsOpen] =
@@ -108,7 +112,7 @@ const GroupsList: React.FC<Props> = ({ groupsData, setSelectedMemberID }) => {
       />
 
       <ViewAndEditModal
-        memberID={"111"}
+        memberID={selectedMemberID}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => setViewAndEditModalIsOpen(false)}
         isOpen={viewAndEditModalIsOpen}

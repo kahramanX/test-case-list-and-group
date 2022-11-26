@@ -21,6 +21,7 @@ export interface IMember {
   groups: IGroup[];
   createdDate: string;
   updatedDate: string;
+  phone: string;
 }
 
 export interface IMemberAll {
