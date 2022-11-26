@@ -41,7 +41,7 @@ const AddMemberModal: React.FC<Props> = ({
     formState: { errors },
   } = useForm<any>();
 
-  const [getBase64Code, setGetBase64Code] = useState<string>();
+  const [getBase64Code, setGetBase64Code] = useState<string | undefined>();
 
   function readFile(files: FileList | null) {
     if (!files || !files[0]) return;
@@ -62,6 +62,7 @@ const AddMemberModal: React.FC<Props> = ({
       .then((response: any) => {
         if (response.status) {
           reset();
+          setGetBase64Code(undefined);
           toast.success("Member Added To List!", {
             position: "top-center",
             autoClose: 5000,
