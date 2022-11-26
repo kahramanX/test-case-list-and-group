@@ -1,6 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
 import Button from "../Button";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+
+import { IAddGroupForm } from "Types/types";
 
 type Props = {
   isOpen: boolean;
@@ -8,92 +13,129 @@ type Props = {
   cancelBtnText: string;
   cancelBtnAction: any;
   whenClosing: any;
+  getGroupsDataFromAPI: any;
 };
 
-interface Ioptions {
-  label: string;
-  value: string;
-}
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    width: "700px",
+  },
+};
 
 const AddGroupModal: React.FC<Props> = ({
   isOpen,
   confirmBtnText,
   cancelBtnAction,
   cancelBtnText,
+  getGroupsDataFromAPI,
 }) => {
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      width: "700px",
-    },
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<any>();
 
-  const options: Ioptions[] = [
-    {
-      label: "label1",
-      value: "label1",
-    },
-    {
-      label: "label1",
-      value: "label2",
-    },
-    {
-      label: "label3",
-      value: "label3",
-    },
-  ];
+  function postGroupInfoToApi(postData: IAddGroupForm) {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/api/group/add`, postData)
+      .then((response: any) => {
+        if (response.status) {
+          cancelBtnAction();
+          getGroupsDataFromAPI();
+          reset();
+          toast.success("Group Added To List!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          toast.error("Error!!!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      });
+  }
 
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={() => {
         cancelBtnAction();
+        reset();
       }}
       style={customStyles}
-      contentLabel="View And Edit Modal"
+      contentLabel="Add Group Modal"
     >
-      <div className="viewedit-modal-text-container">
-        <div className="ve-modal-header">
-          <div className="ve-modal-title">Add Group</div>
-          <div className="ve-modal-edit-btn"></div>
-        </div>
-        <div className="ve-modal-table-container">
-          <table>
-            <tbody>
-              <tr>
-                <td className="table-title">Group Name:</td>
+      <form
+        onSubmit={handleSubmit((data: IAddGroupForm) => {
+          console.log("data1", data);
+          postGroupInfoToApi(data);
+          reset();
+        })}
+      >
+        <div className="viewedit-modal-text-container">
+          <div className="ve-modal-header">
+            <div className="ve-modal-title">Add Group</div>
+            <div className="ve-modal-edit-btn"></div>
+          </div>
+          <div className="ve-modal-table-container">
+            <table>
+              <tbody>
+                <tr>
+                  <td className="table-title">Group Name:</td>
 
-                <td>
-                  <input
-                    type={"text"}
-                    defaultValue={"Group 2"}
-                    className="modal-input"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  <td>
+                    <input
+                      type={"text"}
+                      className="modal-input"
+                      {...register("groupName", { required: true })}
+                    />
+                    {errors.groupName && (
+                      <span className="required">*Required</span>
+                    )}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="ve-modal-buttons">
+            <Button
+              text={cancelBtnText}
+              size={"md"}
+              color={"red-border"}
+              action={() => {
+                reset();
+                cancelBtnAction();
+              }}
+            />
+            <Button
+              text={confirmBtnText}
+              size={"md"}
+              btnType={"submit"}
+              color={"blue"}
+              action={() => console.log("added")}
+            />
+          </div>
         </div>
-        <div className="ve-modal-buttons">
-          <Button
-            text={cancelBtnText}
-            size={"md"}
-            color={"red-border"}
-            action={() => cancelBtnAction()}
-          />
-          <Button
-            text={confirmBtnText}
-            size={"md"}
-            color={"blue"}
-            action={() => console.log("kaydedildi")}
-          />
-        </div>
-      </div>
+      </form>
     </Modal>
   );
 };

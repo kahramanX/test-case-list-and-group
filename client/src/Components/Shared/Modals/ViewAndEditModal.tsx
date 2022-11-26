@@ -8,6 +8,7 @@ import { IAddMemberForm } from "Types/types";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+
 type Props = {
   memberID: string | undefined;
   cancelBtnText: string;
@@ -78,11 +79,12 @@ const ViewAndEditModal: React.FC<Props> = ({
         postData
       )
       .then((response: any) => {
-        if (response.status) {
+        if (response.data.status) {
           reset();
-          setGetBase64Code(undefined);
-          getMembersDataFromAPI();
           getSingleMemberDataFromAPI(memberID);
+          getMembersDataFromAPI();
+          setGetBase64Code(undefined);
+          setEditModeIsOpen(false);
           toast.success("Member Info Updated!", {
             position: "top-center",
             autoClose: 5000,
@@ -346,11 +348,6 @@ const ViewAndEditModal: React.FC<Props> = ({
                     </tr>
                   </>
                 )}
-
-                {/*  <tr>
-                <td className="table-title">Notes:</td>
-                <td className="" >text</td>
-              </tr> */}
               </tbody>
             </table>
           </div>
@@ -370,12 +367,7 @@ const ViewAndEditModal: React.FC<Props> = ({
                 text={"Save"}
                 size={"md"}
                 color={"blue"}
-                action={() => {
-                  //getMembersDataFromAPI();
-                  //setEditModeIsOpen(false);
-                  //reset();
-                  getSingleMemberDataFromAPI(memberID);
-                }}
+                action={() => {}}
               />
             )}
           </div>
