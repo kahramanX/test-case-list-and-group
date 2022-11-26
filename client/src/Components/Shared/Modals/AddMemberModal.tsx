@@ -56,7 +56,6 @@ const AddMemberModal: React.FC<Props> = ({
   }
 
   function postMemberInfoToApi(postData: IAddMemberForm) {
-    console.log(postData);
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/member/add`, postData)
       .then((response: any) => {
@@ -129,7 +128,6 @@ const AddMemberModal: React.FC<Props> = ({
                       {...register("imageBase64", { required: true })}
                       onChange={(event) => {
                         readFile(event.target.files);
-                        console.log(event.target);
                       }}
                     />
                     <span className="required">*Max 5MB</span>
