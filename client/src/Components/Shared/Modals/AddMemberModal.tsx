@@ -10,11 +10,6 @@ type Props = {
   whenClosing: any;
 };
 
-interface Ioptions {
-  label: string;
-  value: string;
-}
-
 const AddMemberModal: React.FC<Props> = ({
   isOpen,
   confirmBtnText,
@@ -32,21 +27,6 @@ const AddMemberModal: React.FC<Props> = ({
       width: "700px",
     },
   };
-
-  const options: Ioptions[] = [
-    {
-      label: "label1",
-      value: "label1",
-    },
-    {
-      label: "label1",
-      value: "label2",
-    },
-    {
-      label: "label3",
-      value: "label3",
-    },
-  ];
 
   return (
     <Modal
