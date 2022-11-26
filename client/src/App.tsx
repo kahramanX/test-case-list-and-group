@@ -4,7 +4,7 @@ import GroupsList from "Components/GroupsList/GroupsList";
 import "./index.scss";
 import Modal from "react-modal";
 import axios from "axios";
-import { IGroup, IGroupAll, IMember, IMemberAll } from "Types/types";
+import { IGroupAll, IMemberAll } from "Types/types";
 import { ToastContainer } from "react-toastify";
 
 Modal.setAppElement("#root");

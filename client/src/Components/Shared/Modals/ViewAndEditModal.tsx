@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "Assets/Styles/ComponentsStyle/viewAndEditModal.scss";
 import Button from "../Button";
 import IconButton from "../IconButton";
+import axios from "axios";
+import { IMember } from "Types/types";
 
 type Props = {
-  memberID: string;
+  memberID: string | undefined;
   cancelBtnText: string;
   cancelBtnAction?: any;
   isOpen: boolean;
@@ -25,11 +27,27 @@ const ViewAndEditModal: React.FC<Props> = ({
   whenClosing,
 }) => {
   const [editModeIsOpen, setEditModeIsOpen] = useState<boolean>(false);
-
+  const [singleMemberDataFromApi, setSingleMemberDataFromApi] =
+    useState<IMember>();
   function editViewModalActions() {
     whenClosing();
     setEditModeIsOpen(false);
   }
+
+  function getSingleMemberDataFromAPI(memberID: string | undefined) {
+    console.log("memberID", memberID);
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/member/${memberID}`)
+      .then((response: any) => {
+        let { data } = response;
+        console.log("datassss", data);
+        setSingleMemberDataFromApi(data);
+      });
+  }
+
+  useEffect(() => {
+    getSingleMemberDataFromAPI(memberID);
+  }, []);
 
   const customStyles = {
     content: {

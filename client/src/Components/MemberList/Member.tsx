@@ -23,11 +23,13 @@ const Member: React.FC<Props> = ({
   function openMemberInfoModal(): any {
     console.log("open member info modal");
     setViewAndEditModalIsOpen(true);
+    setSelectedMemberID(memberData?._id);
   }
 
   function addMemberToGroup(): any {
     console.log("add member to group");
     setIsOpenPopover((isOpenPopover) => !isOpenPopover);
+    setSelectedMemberID(memberData?._id);
   }
 
   function deleteMemberFromMemberList(): any {
@@ -39,6 +41,7 @@ const Member: React.FC<Props> = ({
   function removeMemberFromGroup(): any {
     console.log("leave group");
     setDeleteModalIsOpen(true);
+    setSelectedMemberID(memberData?._id);
   }
 
   interface Ioptions {

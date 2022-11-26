@@ -121,15 +121,14 @@ const MemberList: React.FC<Props> = ({
         }}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => {
-          console.log("cancelllllll");
+          console.log("cancel");
           setDeleteModalIsOpen(false);
         }}
         isOpen={deleteModalIsOpen}
         whenClosing={() => questionModalClosingActions()}
       />
-
       <ViewAndEditModal
-        memberID={"111"}
+        memberID={selectedMemberID}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => setViewAndEditModalIsOpen(false)}
         isOpen={viewAndEditModalIsOpen}

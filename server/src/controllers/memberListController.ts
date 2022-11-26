@@ -16,6 +16,7 @@ export const getAllMemberController = (req: Request, res: Response) => {
 };
 
 export const getSingleMemberController = (req: Request, res: Response) => {
+  console.log(req.params.id);
   MemberModel.findOne({ _id: req.params.id }).then((response: any) => {
     res.json({ data: response });
   });
