@@ -57,7 +57,7 @@ const AddMemberModal: React.FC<Props> = ({
 
   function postMemberInfoToApi(postData: IAddMemberForm) {
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/member/add`, postData)
+      .post(`${process.env.REACT_APP_API_URL}api/member/add`, postData)
       .then((response: any) => {
         if (response.status) {
           reset();
