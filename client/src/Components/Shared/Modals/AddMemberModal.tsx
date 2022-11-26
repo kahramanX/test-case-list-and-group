@@ -72,6 +72,7 @@ const AddMemberModal: React.FC<Props> = ({
             progress: undefined,
             theme: "colored",
           });
+          cancelBtnAction();
         } else {
           toast.error("Error!!!", {
             position: "top-center",
