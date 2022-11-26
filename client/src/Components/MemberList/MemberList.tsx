@@ -6,10 +6,22 @@ import Button from "Components/Shared/Button";
 import QuestionModal from "Components/Shared/Modals/QuestionModal";
 import ViewAndEditModal from "Components/Shared/Modals/ViewAndEditModal";
 import AddMemberModal from "Components/Shared/Modals/AddMemberModal";
+import { IMember } from "Types/types";
+import axios from "axios";
 
-type Props = {};
+type Props = {
+  membersData: IMember[] | undefined;
+  setSelectedMemberID: React.Dispatch<React.SetStateAction<string | undefined>>;
+  selectedMemberID: string | undefined;
+  getMembersDataFromAPI?: any;
+};
 
-const MemberList: React.FC = (props: Props) => {
+const MemberList: React.FC<Props> = ({
+  membersData,
+  setSelectedMemberID,
+  selectedMemberID,
+  getMembersDataFromAPI,
+}) => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
   const [viewAndEditModalIsOpen, setViewAndEditModalIsOpen] =
     useState<boolean>(false);
@@ -25,22 +37,42 @@ const MemberList: React.FC = (props: Props) => {
     setDeleteModalIsOpen(false);
   }
 
+  function deleteMemberFromMemberListWithAPI(memberID: string | undefined) {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/api/member/delete/${memberID}`)
+      .then((response: any) => {
+        console.log(response);
+      });
+  }
+
   return (
     <div className="members-list-container">
       <div className="members-list-title-row">
         <div className="members-list-title">Member List</div>
-        <Badge text={"31"} color={"blue"} exClass={"member-count"} />
+        <Badge
+          text={membersData?.length}
+          color={"blue"}
+          exClass={"member-count"}
+        />
       </div>
 
       <div className="members-list">
-        {[0, 1, 2, 3, 4, 5, 6, 7].map((index) => (
+        {membersData?.map((memberData, index) => (
           <Member
             key={index}
+            memberData={memberData}
             setDeleteModalIsOpen={setDeleteModalIsOpen}
             setViewAndEditModalIsOpen={setViewAndEditModalIsOpen}
+            setSelectedMemberID={setSelectedMemberID}
             memberLocation={"memberList"}
           />
         ))}
+
+        {membersData?.length === 0 && (
+          <div className="center-no-data-text">
+            There is no member, please add member
+          </div>
+        )}
       </div>
 
       <Button
@@ -60,7 +92,9 @@ const MemberList: React.FC = (props: Props) => {
         }
         confirmBtnText={"Yes, I am sure"}
         confirmBtnAction={() => {
-          console.log("confirmmmmm");
+          deleteMemberFromMemberListWithAPI(selectedMemberID);
+          getMembersDataFromAPI();
+          setDeleteModalIsOpen(false);
         }}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => {

@@ -9,10 +9,15 @@ import QuestionModal from "Components/Shared/Modals/QuestionModal";
 import ViewAndEditModal from "Components/Shared/Modals/ViewAndEditModal";
 import AddGroupModal from "Components/Shared/Modals/AddGroupModal";
 import ViewAndEditGroupModal from "Components/Shared/Modals/ViewAndEditGroupModal";
+import { IGroup } from "Types/types";
 
-type Props = {};
+type Props = {
+  groupsData: IGroup[] | undefined;
+  setSelectedMemberID: React.Dispatch<React.SetStateAction<string | undefined>>;
+  selectedMemberID: string | undefined;
+};
 
-const GroupsList: React.FC = (props: Props) => {
+const GroupsList: React.FC<Props> = ({ groupsData, setSelectedMemberID }) => {
   const [addGroupModal, setAddGroupModal] = useState<boolean>(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
   const [viewAndEditModalIsOpen, setViewAndEditModalIsOpen] =
@@ -21,6 +26,7 @@ const GroupsList: React.FC = (props: Props) => {
     useState<boolean>(false);
   const [viewAndEditGroupModalIsOpen, setViewAndEditGroupModalIsOpen] =
     useState<boolean>(false);
+
   function openaddGroupModal() {
     console.log("open add member modal");
     setAddGroupModal(true);
@@ -35,7 +41,11 @@ const GroupsList: React.FC = (props: Props) => {
     <div className="members-list-container">
       <div className="members-list-title-row">
         <div className="members-list-title">Groups List</div>
-        <Badge text={"13"} color={"blue"} exClass={"member-count"} />
+        <Badge
+          text={groupsData?.length}
+          color={"blue"}
+          exClass={"member-count"}
+        />
       </div>
       <div className="member-list">
         {[1, 2, 3].map((index) => (
@@ -45,6 +55,7 @@ const GroupsList: React.FC = (props: Props) => {
             setViewAndEditModalIsOpen={setViewAndEditModalIsOpen}
             setViewAndEditGroupModalIsOpen={setViewAndEditGroupModalIsOpen}
             setDeleteGroupModalIsOpen={setDeleteGroupModalIsOpen}
+            setSelectedMemberID={setSelectedMemberID}
           />
         ))}
       </div>

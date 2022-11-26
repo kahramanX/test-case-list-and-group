@@ -1,12 +1,9 @@
-export type ObjectID = {
+export interface ObjectID {
   _id: string;
-};
-export type Count = {
-  count: number;
-};
+}
 
 export interface IGroup {
-  _id: ObjectID;
+  _id: string;
   groupName: string;
   members: IMember[];
   createdDate: string;
@@ -14,7 +11,7 @@ export interface IGroup {
 }
 
 export interface IMember {
-  _id: ObjectID;
+  _id: string;
   memberID: string;
   firstName: string;
   lastName: string;
@@ -27,11 +24,11 @@ export interface IMember {
 }
 
 export interface IMemberAll {
-  count: Count;
+  memberCount: number;
   data: IMember[];
 }
 
 export interface IGroupAll {
-  count: Count;
+  groupCount: number;
   data: IGroup[];
 }

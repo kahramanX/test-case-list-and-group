@@ -8,6 +8,7 @@ type Props = {
   setViewAndEditModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setDeleteGroupModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setViewAndEditGroupModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedMemberID: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 const Group: React.FC<Props> = ({
@@ -15,6 +16,7 @@ const Group: React.FC<Props> = ({
   setViewAndEditModalIsOpen,
   setDeleteGroupModalIsOpen,
   setViewAndEditGroupModalIsOpen,
+  setSelectedMemberID,
 }) => {
   function deleteGroupModalHandle() {
     setDeleteGroupModalIsOpen(true);
@@ -53,6 +55,7 @@ const Group: React.FC<Props> = ({
               setViewAndEditModalIsOpen={setViewAndEditModalIsOpen}
               memberLocation={"memberGroup"}
               setDeleteModalIsOpen={setDeleteModalIsOpen}
+              setSelectedMemberID={setSelectedMemberID}
             />
           ))}
         </div>
