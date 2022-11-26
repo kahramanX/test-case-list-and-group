@@ -42,3 +42,7 @@ export type IAddMemberForm = {
   phone: string;
   birthday: string;
 };
+
+export type IAddGroupForm = {
+  groupName: string;
+};

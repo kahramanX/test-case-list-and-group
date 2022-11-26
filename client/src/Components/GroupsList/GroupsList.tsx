@@ -57,7 +57,8 @@ const GroupsList: React.FC<Props> = ({
       .post(`${process.env.REACT_APP_API_URL}/api/group/delete/${groupID}`)
       .then((response: any) => {
         console.log(response);
-        if (response.status) {
+        if (response.data.status) {
+          getGroupsDataFromAPI();
           toast.success("Group Deleted From List!", {
             position: "top-center",
             autoClose: 5000,
@@ -109,7 +110,7 @@ const GroupsList: React.FC<Props> = ({
 
         {groupsData?.length === 0 && (
           <div className="center-no-data-text">
-            There is no member, please add member
+            There is no group, please add group
           </div>
         )}
       </div>
@@ -139,6 +140,7 @@ const GroupsList: React.FC<Props> = ({
         cancelBtnAction={() => {
           console.log("cancel");
           setDeleteModalIsOpen(false);
+          getGroupsDataFromAPI();
         }}
         whenClosing={() => questionModalClosingActions()}
       />
@@ -151,13 +153,14 @@ const GroupsList: React.FC<Props> = ({
         }
         confirmBtnText={"Yes, I am sure"}
         confirmBtnAction={() => {
-          console.log("confirmmmmm");
+          console.log("confim");
+          deleteGroupFromGroupListWithAPI(selectedGroupID);
+          setDeleteGroupModalIsOpen(false);
         }}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => {
           console.log("cancel");
           setDeleteGroupModalIsOpen(false);
-          deleteGroupFromGroupListWithAPI(selectedGroupID);
         }}
         whenClosing={() => setDeleteGroupModalIsOpen(false)}
       />
@@ -172,11 +175,12 @@ const GroupsList: React.FC<Props> = ({
       />
 
       <ViewAndEditGroupModal
-        groupID={"11222"}
+        groupID={selectedGroupID}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => setViewAndEditGroupModalIsOpen(false)}
         isOpen={viewAndEditGroupModalIsOpen}
         whenClosing={() => setViewAndEditGroupModalIsOpen(false)}
+        getGroupsDataFromAPI={getGroupsDataFromAPI}
       />
 
       <AddGroupModal
@@ -185,6 +189,7 @@ const GroupsList: React.FC<Props> = ({
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => setAddGroupModal(false)}
         whenClosing={() => setAddGroupModal(false)}
+        getGroupsDataFromAPI={getGroupsDataFromAPI}
       />
     </div>
   );

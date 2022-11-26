@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "Assets/Styles/ComponentsStyle/viewAndEditModal.scss";
 import Button from "../Button";
 import IconButton from "../IconButton";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { IAddGroupForm } from "Types/types";
 
 type Props = {
-  groupID: string;
+  groupID: string | undefined;
   cancelBtnText: string;
   cancelBtnAction?: any;
   isOpen: boolean;
   whenClosing: any;
+  getGroupsDataFromAPI: any;
 };
 
 const ViewAndEditGroupModal: React.FC<Props> = ({
@@ -18,8 +23,73 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
   cancelBtnAction,
   isOpen,
   whenClosing,
+  getGroupsDataFromAPI,
 }) => {
   const [editModeIsOpen, setEditModeIsOpen] = useState<boolean>(false);
+  const [singleGroupDataFromApi, setsingleGroupDataFromApi] = useState<any>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<any>();
+
+  function getSingleGroupDataFromAPI(groupID: string | undefined) {
+    if (groupID) {
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/api/group/${groupID}`)
+        .then((response: any) => {
+          let { data } = response;
+          setsingleGroupDataFromApi(data.data);
+        });
+    }
+  }
+
+  function postSingleGroupUpdatedInfosToAPI(postData: any) {
+    console.log("test 1");
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/api/group/update/${groupID}`,
+        postData
+      )
+      .then((response: any) => {
+        console.log("test 2");
+        console.log("response1", response);
+        if (response.data.status) {
+          console.log("test 3");
+          getSingleGroupDataFromAPI(groupID);
+          getGroupsDataFromAPI();
+          cancelBtnAction();
+          reset();
+          toast.success("Group Info Updated!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          console.log("test 4");
+          toast.error("Error!!!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+        console.log("test 5");
+      });
+  }
+
+  useEffect(() => {
+    getSingleGroupDataFromAPI(groupID);
+  }, [groupID]);
 
   const customStyles = {
     content: {
@@ -34,6 +104,7 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
   };
 
   function editViewGroupModalCancelActions() {
+    reset();
     whenClosing();
     setEditModeIsOpen(false);
   }
@@ -44,81 +115,109 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
       onRequestClose={() => {
         cancelBtnAction();
         setEditModeIsOpen(false);
+        reset();
       }}
       style={customStyles}
-      contentLabel="View And Edit Modal"
+      contentLabel="View And Edit Group Modal"
     >
-      <div className="viewedit-modal-text-container">
-        <div className="ve-modal-header">
-          <div className="ve-modal-title">View And Update Group</div>
-          <div className="ve-modal-edit-btn">
+      <form
+        onSubmit={handleSubmit((data: any) => {
+          console.log("data1", data);
+          postSingleGroupUpdatedInfosToAPI(data);
+          getGroupsDataFromAPI();
+          reset();
+        })}
+      >
+        <div className="viewedit-modal-text-container">
+          <div className="ve-modal-header">
+            <div className="ve-modal-title">View And Update Group</div>
+            <div className="ve-modal-edit-btn">
+              {!editModeIsOpen && (
+                <IconButton
+                  iconName={"edit"}
+                  color={"green"}
+                  action={() => setEditModeIsOpen(true)}
+                />
+              )}
+              {editModeIsOpen && (
+                <div className="edit-btn-actions">
+                  <IconButton
+                    iconName={"close"}
+                    color={"red"}
+                    action={() => {
+                      setEditModeIsOpen(false);
+                      reset();
+                    }}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="ve-modal-table-container">
+            <table>
+              <tbody>
+                <tr>
+                  <td className="table-title">Group Name:</td>
+                  {!editModeIsOpen && (
+                    <td>{singleGroupDataFromApi?.groupName}</td>
+                  )}
+                  {editModeIsOpen && (
+                    <td>
+                      <input
+                        type={"text"}
+                        defaultValue={singleGroupDataFromApi?.groupName}
+                        className="modal-input"
+                        {...register("groupName", { required: true })}
+                      />
+                      {errors.groupName && (
+                        <span className="required">*Required</span>
+                      )}
+                    </td>
+                  )}
+                </tr>
+                {!editModeIsOpen && (
+                  <>
+                    <tr>
+                      <td className="table-title">Created Date:</td>
+                      <td>{singleGroupDataFromApi?.createdDate}</td>
+                    </tr>
+                    <tr>
+                      <td className="table-title">Updated Date:</td>
+                      <td>{singleGroupDataFromApi?.updatedDate}</td>
+                    </tr>
+                    <tr>
+                      <td className="table-title">Members:</td>
+                      <td>Ege kahraman, Ece Yılmaz</td>
+                    </tr>
+                  </>
+                )}
+              </tbody>
+            </table>
+          </div>
+          <div className="ve-modal-buttons">
             {!editModeIsOpen && (
-              <IconButton
-                iconName={"edit"}
-                color={"green"}
-                action={() => setEditModeIsOpen(true)}
+              <Button
+                text={cancelBtnText}
+                size={"md"}
+                color={"red-border"}
+                action={editViewGroupModalCancelActions}
               />
             )}
+
             {editModeIsOpen && (
-              <div className="edit-btn-actions">
-                <IconButton
-                  iconName={"close"}
-                  color={"red"}
-                  action={() => setEditModeIsOpen(false)}
-                />
-                <IconButton
-                  iconName={"done"}
-                  color={"green"}
-                  action={() => setEditModeIsOpen(false)}
-                />
-              </div>
+              <Button
+                btnType={"submit"}
+                text={"Save"}
+                size={"md"}
+                color={"blue"}
+                action={() => {
+                  setEditModeIsOpen(false);
+                }}
+              />
             )}
           </div>
         </div>
-        <div className="ve-modal-table-container">
-          <table>
-            <tbody>
-              <tr>
-                <td className="table-title">Group Name:</td>
-                {!editModeIsOpen && <td>Group 1</td>}
-                {editModeIsOpen && (
-                  <td>
-                    <input
-                      type={"text"}
-                      value={"Group 1"}
-                      className="modal-input"
-                    />
-                  </td>
-                )}
-              </tr>
-              {!editModeIsOpen && (
-                <>
-                  <tr>
-                    <td className="table-title">Created Date:</td>
-                    <td>1 October 2022</td>
-                  </tr>
-                  <tr>
-                    <td className="table-title">Updated Date:</td>
-                    <td>1 October 2022</td>
-                  </tr>
-                  <tr>
-                    <td className="table-title">Members:</td>
-                    <td>Ege kahraman, Ece Yılmaz</td>
-                  </tr>
-                </>
-              )}
-            </tbody>
-          </table>
-        </div>
-        <div className="ve-modal-buttons">
-          <Button
-            text={cancelBtnText}
-            size={"md"}
-            color={"red-border"}
-            action={editViewGroupModalCancelActions}
-          />
-        </div>
-      </div>
+      </form>
     </Modal>
   );
 };

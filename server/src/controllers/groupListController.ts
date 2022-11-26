@@ -16,11 +16,11 @@ export const addGroupController = (req: Request, res: Response) => {
   addMember.save((err: any, result: any) => {
     if (result) {
       console.log("Group Added ✅ ");
-
+      res.json({ status: true });
       //const addToMemberList = MemberListModel({});
     } else {
       console.log("Group Could Not Added ❌ ");
-      console.log(err);
+      res.json({ status: false });
     }
   });
 };
@@ -57,9 +57,13 @@ export const updateGroupController = (req: Request, res: Response) => {
     updatedDate: new Intl.DateTimeFormat("tr-TR", options).format(new Date()),
   })
     .then((response: any) => {
+      console.log(response);
+      console.log("Group Updated ✅ ");
       res.json({ status: true });
     })
     .catch((error: any) => {
+      console.log(error);
+      console.log("Group Could Not Update ❌ ");
       res.json({ status: false });
     });
 };

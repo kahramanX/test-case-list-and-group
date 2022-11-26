@@ -59,7 +59,7 @@ const AddMemberModal: React.FC<Props> = ({
     axios
       .post(`${process.env.REACT_APP_API_URL}api/member/add`, postData)
       .then((response: any) => {
-        if (response.status) {
+        if (response.data.status) {
           reset();
           setGetBase64Code(undefined);
           toast.success("Member Added To List!", {

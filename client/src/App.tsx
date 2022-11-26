@@ -23,7 +23,6 @@ const App: React.FC = () => {
       .get(`${process.env.REACT_APP_API_URL}/api/member/all`)
       .then((response: any) => {
         let { data } = response;
-        console.log(response);
         setMemberDataFromApi(data);
       });
   }

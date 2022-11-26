@@ -43,7 +43,7 @@ const MemberList: React.FC<Props> = ({
       .post(`${process.env.REACT_APP_API_URL}/api/member/delete/${memberID}`)
       .then((response: any) => {
         console.log(response);
-        if (response.status) {
+        if (response.data.status) {
           toast.success("Member Deleted From List!", {
             position: "top-center",
             autoClose: 5000,
