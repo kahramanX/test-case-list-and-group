@@ -32,3 +32,12 @@ export interface IGroupAll {
   groupCount: number;
   data: IGroup[];
 }
+
+export type IAddMemberForm = {
+  firstName: string;
+  lastName: string;
+  imageBase64: string;
+  email: string;
+  phone: string;
+  birthday: string;
+};

@@ -119,6 +119,7 @@ const MemberList: React.FC<Props> = ({
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => setAddMemberModal(false)}
         whenClosing={() => setAddMemberModal(false)}
+        getMembersDataFromAPI={getMembersDataFromAPI}
       />
     </div>
   );

@@ -37,9 +37,6 @@ const App: React.FC = () => {
     getGroupsDataFromAPI();
   }, []);
 
-  console.log("memberData", memberDataFromApi?.data);
-  console.log("groupData", groupDataFromApi);
-
   return (
     <div className="App">
       <MemberList

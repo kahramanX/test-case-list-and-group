@@ -17,6 +17,9 @@ const memberSchema = Schema({
   email: {
     type: String,
   },
+  phone: {
+    type: String,
+  },
   birthday: {
     type: String,
   },

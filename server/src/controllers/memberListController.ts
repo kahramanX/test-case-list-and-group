@@ -23,7 +23,7 @@ export const getSingleMemberController = (req: Request, res: Response) => {
 
 // POST
 export const addMemberController = (req: Request, res: Response) => {
-  const { firstName, lastName, imageBase64, email, birthday } = req.body;
+  const { firstName, lastName, imageBase64, email, birthday, phone } = req.body;
 
   const addMember = MemberModel({
     memberID: uuidv4(),
@@ -32,6 +32,7 @@ export const addMemberController = (req: Request, res: Response) => {
     imageBase64: imageBase64,
     email: email,
     birthday: birthday,
+    phone: phone,
     updatedDate: new Intl.DateTimeFormat("tr-TR", options).format(new Date()),
   });
 
