@@ -73,12 +73,16 @@ const ViewAndEditModal: React.FC<Props> = ({
 
   function postSingleMemberUpdatedInfosToAPI(postData: IAddMemberForm) {
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/member/update/`, postData)
+      .post(
+        `${process.env.REACT_APP_API_URL}/api/member/update/${memberID}`,
+        postData
+      )
       .then((response: any) => {
         if (response.status) {
           reset();
           setGetBase64Code(undefined);
           getMembersDataFromAPI();
+          getSingleMemberDataFromAPI(memberID);
           toast.success("Member Info Updated!", {
             position: "top-center",
             autoClose: 5000,
@@ -214,7 +218,7 @@ const ViewAndEditModal: React.FC<Props> = ({
                           id="img"
                           // name="img"
                           accept="image/*"
-                          {...register("imageBase64", { required: true })}
+                          {...register("imageBase64", { required: false })}
                           onChange={(event) => {
                             readFile(event.target.files);
                           }}
