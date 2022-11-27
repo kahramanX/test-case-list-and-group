@@ -106,6 +106,7 @@ const AddGroupModal: React.FC<Props> = ({
                     <input
                       type={"text"}
                       className="modal-input"
+                      maxLength={15}
                       {...register("groupName", { required: true })}
                     />
                     {errors.groupName && (

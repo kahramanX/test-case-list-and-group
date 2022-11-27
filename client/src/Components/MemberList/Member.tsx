@@ -22,8 +22,9 @@ const Member: React.FC<Props> = ({
   options,
 }) => {
   const [isOpenPopover, setIsOpenPopover] = useState<boolean>(true);
-  const [selectedOptionsToAPI, setSelectedOptionsToAPI] =
-    useState<Ioptions[]>();
+  const [selectedOptionsToAPI, setSelectedOptionsToAPI] = useState<
+    Ioptions[] | undefined
+  >();
 
   function openMemberInfoModal(): any {
     console.log("open member info modal");
@@ -106,15 +107,16 @@ const Member: React.FC<Props> = ({
         </div>
         {isOpenPopover === false && memberLocation === "memberList" ? (
           <div className="popover-container">
-            <Button
-              text={"Update Groups"}
-              btnType={"button"}
-              color={"green"}
-              size={"md"}
-              exClass={"update-groups-btn"}
-              action={updateMembersGroupSelections}
-              isDisabled={"disabled"}
-            />
+            {selectedOptionsToAPI != undefined ? (
+              <Button
+                text={"Update Groups"}
+                btnType={"button"}
+                color={"green"}
+                size={"md"}
+                exClass={"update-groups-btn"}
+                action={updateMembersGroupSelections}
+              />
+            ) : null}
             <Select
               multi={true}
               options={options}
