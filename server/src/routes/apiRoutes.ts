@@ -5,6 +5,7 @@ import {
   deleteMemberController,
   updateMemberController,
   getSingleMemberController,
+  addMemberToGroupController,
 } from "../controllers/memberListController";
 import {
   addGroupController,
@@ -12,6 +13,7 @@ import {
   deleteGroupController,
   updateGroupController,
   getSingleGroupController,
+  removeMemberFromGroupController,
 } from "../controllers/groupListController";
 
 const router = express.Router();
@@ -25,6 +27,7 @@ router.get("/member/:id", getSingleMemberController);
 router.post("/member/add", addMemberController);
 router.post("/member/delete/:id", deleteMemberController);
 router.post("/member/update/:id", updateMemberController);
+router.post("/member/to/group/:id", addMemberToGroupController);
 
 // Group Actions
 // Group GET
@@ -35,5 +38,6 @@ router.get("/group/:id", getSingleGroupController);
 router.post("/group/add", addGroupController);
 router.post("/group/delete/:id", deleteGroupController);
 router.post("/group/update/:id", updateGroupController);
+router.post("/group/remove/member/:id", removeMemberFromGroupController);
 
 export default router;

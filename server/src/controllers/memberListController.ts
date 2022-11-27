@@ -75,3 +75,7 @@ export const updateMemberController = (req: Request, res: Response) => {
       res.json({ status: false });
     });
 };
+
+export const addMemberToGroupController = (req: Request, res: Response) => {
+  res.json({ status: true });
+};
