@@ -1,3 +1,4 @@
+import Button from "Components/Shared/Button";
 import IconButton from "Components/Shared/IconButton";
 import React, { useState, useEffect } from "react";
 import Select from "react-dropdown-select";
@@ -46,12 +47,11 @@ const Member: React.FC<Props> = ({
     setSelectedMemberID(memberData?._id);
   }
 
-  const values: Ioptions[] = [
-    {
-      label: "label1",
-      value: "label1",
-    },
-  ];
+  function updateMembersGroupSelections(): any {
+    console.log("updated groups");
+  }
+
+  const values: Ioptions[] = [];
 
   return (
     <>
@@ -103,6 +103,14 @@ const Member: React.FC<Props> = ({
         </div>
         {isOpenPopover === false && memberLocation === "memberList" ? (
           <div className="popover-container">
+            <Button
+              text={"Update Groups"}
+              btnType={"button"}
+              color={"green"}
+              size={"md"}
+              exClass={"update-groups-btn"}
+              action={updateMembersGroupSelections}
+            />
             <Select
               multi={true}
               options={options}

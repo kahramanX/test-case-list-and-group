@@ -12,7 +12,7 @@ type Props = {
     | "red-border"
     | "blue-border"
     | "green-border";
-  size?: "md" | "xl";
+  size?: "sm" | "md" | "xl";
   action?: any;
   btnType?: "button" | "submit";
 };
