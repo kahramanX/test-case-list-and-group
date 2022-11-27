@@ -62,3 +62,14 @@
   padding: 12px;
   width: 100%;
 }
+
+.base-button.disabled {
+  background-color: rgb(194, 194, 194);
+  border: 1px solid red !important;
+  pointer-events: none;
+  cursor: not-allowed;
+
+  &:active {
+    scale: none;
+  }
+}

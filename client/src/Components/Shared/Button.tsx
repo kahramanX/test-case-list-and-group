@@ -15,6 +15,7 @@ type Props = {
   size?: "sm" | "md" | "xl";
   action?: any;
   btnType?: "button" | "submit";
+  isDisabled?: "disabled";
 };
 
 const Button: React.FC<Props> = ({
@@ -25,11 +26,12 @@ const Button: React.FC<Props> = ({
   color,
   action,
   btnType = "button",
+  isDisabled,
 }) => {
   return (
     <button
       type={btnType}
-      className={`base-button ${color} ${size}  ${exClass}`}
+      className={`base-button ${color} ${size}  ${exClass} ${isDisabled}`}
       onClick={() => action()}
     >
       {iconName && <span className="material-symbols-rounded">{iconName}</span>}

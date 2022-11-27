@@ -22,6 +22,8 @@ const Member: React.FC<Props> = ({
   options,
 }) => {
   const [isOpenPopover, setIsOpenPopover] = useState<boolean>(true);
+  const [selectedOptionsToAPI, setSelectedOptionsToAPI] =
+    useState<Ioptions[]>();
 
   function openMemberInfoModal(): any {
     console.log("open member info modal");
@@ -49,6 +51,7 @@ const Member: React.FC<Props> = ({
 
   function updateMembersGroupSelections(): any {
     console.log("updated groups");
+    console.log("selectedOptionsToAPI", selectedOptionsToAPI);
   }
 
   const values: Ioptions[] = [];
@@ -110,12 +113,16 @@ const Member: React.FC<Props> = ({
               size={"md"}
               exClass={"update-groups-btn"}
               action={updateMembersGroupSelections}
+              isDisabled={"disabled"}
             />
             <Select
               multi={true}
               options={options}
               values={values}
-              onChange={(values2) => console.log(values2)}
+              onChange={(values2) => {
+                console.log(values2);
+                setSelectedOptionsToAPI(values2);
+              }}
             />
           </div>
         ) : null}
