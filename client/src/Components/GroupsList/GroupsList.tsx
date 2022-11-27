@@ -83,7 +83,7 @@ const GroupsList: React.FC<Props> = ({
   }
 
   return (
-    <div className="members-list-container">
+    <div className="members-list-container groups-section">
       <div className="members-list-title-row">
         <div className="members-list-title">Groups List</div>
         <Badge

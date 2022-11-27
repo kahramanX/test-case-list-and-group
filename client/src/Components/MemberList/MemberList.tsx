@@ -6,7 +6,7 @@ import Button from "Components/Shared/Button";
 import QuestionModal from "Components/Shared/Modals/QuestionModal";
 import ViewAndEditModal from "Components/Shared/Modals/ViewAndEditModal";
 import AddMemberModal from "Components/Shared/Modals/AddMemberModal";
-import { IMember } from "Types/types";
+import { IMember, Ioptions } from "Types/types";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -15,6 +15,7 @@ type Props = {
   setSelectedMemberID: React.Dispatch<React.SetStateAction<string | undefined>>;
   selectedMemberID: string | undefined;
   getMembersDataFromAPI?: any;
+  options: Ioptions[] | undefined;
 };
 
 const MemberList: React.FC<Props> = ({
@@ -22,6 +23,7 @@ const MemberList: React.FC<Props> = ({
   setSelectedMemberID,
   selectedMemberID,
   getMembersDataFromAPI,
+  options,
 }) => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
   const [viewAndEditModalIsOpen, setViewAndEditModalIsOpen] =
@@ -84,6 +86,7 @@ const MemberList: React.FC<Props> = ({
           <Member
             key={index}
             memberData={memberData}
+            options={options}
             setDeleteModalIsOpen={setDeleteModalIsOpen}
             setViewAndEditModalIsOpen={setViewAndEditModalIsOpen}
             setSelectedMemberID={setSelectedMemberID}

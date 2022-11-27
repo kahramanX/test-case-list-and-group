@@ -46,3 +46,8 @@ export type IAddMemberForm = {
 export type IAddGroupForm = {
   groupName: string;
 };
+
+export interface Ioptions {
+  label: string;
+  value: string;
+}
