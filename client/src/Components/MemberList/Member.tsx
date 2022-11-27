@@ -1,7 +1,7 @@
 import IconButton from "Components/Shared/IconButton";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-dropdown-select";
-import { IMember } from "Types/types";
+import { IMember, Ioptions } from "Types/types";
 
 type Props = {
   setDeleteModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -9,6 +9,7 @@ type Props = {
   setSelectedMemberID: React.Dispatch<React.SetStateAction<string | undefined>>;
   memberLocation: "memberList" | "memberGroup";
   memberData?: IMember | undefined;
+  options?: Ioptions[] | undefined | any;
 };
 
 const Member: React.FC<Props> = ({
@@ -17,6 +18,7 @@ const Member: React.FC<Props> = ({
   setViewAndEditModalIsOpen,
   memberLocation,
   memberData,
+  options,
 }) => {
   const [isOpenPopover, setIsOpenPopover] = useState<boolean>(true);
 
@@ -43,26 +45,6 @@ const Member: React.FC<Props> = ({
     setDeleteModalIsOpen(true);
     setSelectedMemberID(memberData?._id);
   }
-
-  interface Ioptions {
-    label: string;
-    value: string;
-  }
-
-  const options: Ioptions[] = [
-    {
-      label: "label1",
-      value: "label1",
-    },
-    {
-      label: "label2",
-      value: "label2",
-    },
-    {
-      label: "label3",
-      value: "label3",
-    },
-  ];
 
   const values: Ioptions[] = [
     {
@@ -125,7 +107,7 @@ const Member: React.FC<Props> = ({
               multi={true}
               options={options}
               values={values}
-              onChange={(values) => console.log(values)}
+              onChange={(values2) => console.log(values2)}
             />
           </div>
         ) : null}

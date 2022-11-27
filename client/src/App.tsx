@@ -4,13 +4,13 @@ import GroupsList from "Components/GroupsList/GroupsList";
 import "./index.scss";
 import Modal from "react-modal";
 import axios from "axios";
-import { IGroupAll, IMemberAll } from "Types/types";
+import { IGroupAll, IMemberAll, Ioptions } from "Types/types";
 import { ToastContainer } from "react-toastify";
 
 Modal.setAppElement("#root");
 const App: React.FC = () => {
   const [memberDataFromApi, setMemberDataFromApi] = useState<IMemberAll>();
-  const [groupDataFromApi, setGroupDataFromApi] = useState<IGroupAll>();
+  const [groupsDataFromApi, setgroupsDataFromApi] = useState<IGroupAll>();
   const [selectedMemberID, setSelectedMemberID] = useState<string | undefined>(
     ""
   );
@@ -32,7 +32,7 @@ const App: React.FC = () => {
       .get(`${process.env.REACT_APP_API_URL}/api/group/all`)
       .then((response: any) => {
         let { data } = response;
-        setGroupDataFromApi(data);
+        setgroupsDataFromApi(data);
       });
   }
 
@@ -41,6 +41,17 @@ const App: React.FC = () => {
     getGroupsDataFromAPI();
   }, [selectedMemberID]);
 
+  const options: Ioptions[] | undefined = groupsDataFromApi?.data?.map(
+    (group, index) => {
+      return {
+        label: group.groupName,
+        value: group._id,
+      };
+    }
+  );
+
+  console.log(options);
+
   return (
     <div className="App">
       <MemberList
@@ -48,11 +59,12 @@ const App: React.FC = () => {
         selectedMemberID={selectedMemberID}
         membersData={memberDataFromApi && memberDataFromApi?.data}
         getMembersDataFromAPI={getMembersDataFromAPI}
+        options={options}
       />
       <GroupsList
         setSelectedMemberID={setSelectedMemberID}
         selectedMemberID={selectedMemberID}
-        groupsData={groupDataFromApi && groupDataFromApi?.data}
+        groupsData={groupsDataFromApi && groupsDataFromApi?.data}
         getMembersDataFromAPI={getMembersDataFromAPI}
         getGroupsDataFromAPI={getGroupsDataFromAPI}
         setSelectedGroupID={setSelectedGroupID}
