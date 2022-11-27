@@ -11,7 +11,7 @@ const groupSchema = Schema({
   members: [
     {
       type: Schema.Types.ObjectId,
-      ref: "member",
+      ref: "Member",
     },
   ],
   createdDate: {
@@ -32,6 +32,6 @@ const groupSchema = Schema({
   },
 });
 
-const GroupModel = mongoose.model("group", groupSchema);
+const GroupModel = mongoose.model("Group", groupSchema, "groups");
 
 export default GroupModel;
