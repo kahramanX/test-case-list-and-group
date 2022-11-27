@@ -300,7 +300,7 @@ const ViewAndEditModal: React.FC<Props> = ({
                   {editModeIsOpen && (
                     <td>
                       <input
-                        type={"phone"}
+                        type={"number"}
                         defaultValue={singleMemberDataFromApi?.phone}
                         className="modal-input"
                         {...register("phone", { required: true })}

@@ -33,6 +33,23 @@ input {
     rgba(255, 255, 255, 1) 100%
   );
   height: 100vh;
+
+  @media (max-width: 930px) {
+    padding: 50px 5%;
+    grid-template-columns: repeat(2, 45%);
+  }
+
+  @media (max-width: 780px) {
+    padding: 20px 2%;
+    grid-template-columns: repeat(2, 47%);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(1, 100%);
+    .members-list-container {
+      margin-bottom: 30px;
+    }
+  }
 }
 
 ::selection {
@@ -51,6 +68,14 @@ input {
 
 .ReactModal__Content {
   border-radius: 14px !important;
+
+  @media (max-width: 760px) {
+    width: 400px !important;
+  }
+
+  @media (max-width: 440px) {
+    width: 350px !important;
+  }
 
   .required {
     font-weight: 700;
@@ -85,4 +110,27 @@ input {
   background: $light-blue;
   border-radius: 10px;
 }
+
+.members-list-container {
+  .member-list,
+  .members-list {
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
 // Scrollbar End
+
+// Delete Arrows from input START
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+// Delete Arrows from input END

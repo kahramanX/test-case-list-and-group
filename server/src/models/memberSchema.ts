@@ -26,7 +26,7 @@ const memberSchema = Schema({
   groups: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Group",
+      ref: "group",
     },
   ],
   createdDate: {
