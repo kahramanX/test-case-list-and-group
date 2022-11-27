@@ -18,6 +18,10 @@
     .accordion-body {
       padding: 1rem !important;
 
+      .member-list {
+        height: auto !important;
+      }
+
       .group-header-container {
         padding: 8px 12px;
         display: flex;
