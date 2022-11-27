@@ -15,11 +15,9 @@ export const addGroupController = (req: Request, res: Response) => {
 
   addMember.save((err: any, result: any) => {
     if (result) {
-      console.log("Group Added ✅ ");
       res.json({ status: true });
       //const addToMemberList = MemberListModel({});
     } else {
-      console.log("Group Could Not Added ❌ ");
       res.json({ status: false });
     }
   });
@@ -52,18 +50,14 @@ export const deleteGroupController = (req: Request, res: Response) => {
 export const updateGroupController = (req: Request, res: Response) => {
   const { groupName } = req.body;
 
-  console.log("groupName", groupName);
-
   GroupModel.findByIdAndUpdate(req.params.id, {
     groupName: groupName,
     updatedDate: new Intl.DateTimeFormat("tr-TR", options).format(new Date()),
   })
     .then((response: any) => {
-      console.log("Group Updated ✅ ");
       res.json({ status: true });
     })
     .catch((error: any) => {
-      console.log("Group Could Not Update ❌ ");
       res.json({ status: false });
     });
 };
