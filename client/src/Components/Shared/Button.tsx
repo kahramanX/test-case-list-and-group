@@ -5,8 +5,14 @@ type Props = {
   text: string;
   iconName?: string;
   exClass?: string;
-  color: string;
-  size?: string;
+  color:
+    | "red"
+    | "blue"
+    | "green"
+    | "red-border"
+    | "blue-border"
+    | "green-border";
+  size?: "md" | "xl";
   action?: any;
   btnType?: "button" | "submit";
 };
