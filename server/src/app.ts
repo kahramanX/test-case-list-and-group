@@ -19,17 +19,17 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use("/api", router);
 
 // Test
-/* import MemberModel from "./models/MemberSchema";
+
+import MemberModel from "./models/MemberSchema";
 import GroupModel from "./models/GroupSchema";
 
 app.get("/test/:id", (req: Request, res: Response) => {
   MemberModel.findOne({ _id: req.params.id })
-    .populate("group ") // key to populate
-    .exec()
-    .then((user: any) => {
+    .populate("groups") // key to populate
+    .exec((user: any) => {
       console.log(user);
       res.json(user);
     });
-}); */
+});
 
 export default app;

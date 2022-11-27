@@ -57,11 +57,13 @@ const AddMemberModal: React.FC<Props> = ({
 
   function postMemberInfoToApi(postData: IAddMemberForm) {
     axios
-      .post(`${process.env.REACT_APP_API_URL}api/member/add`, postData)
+      .post(`${process.env.REACT_APP_API_URL}/api/member/add`, postData)
       .then((response: any) => {
         if (response.data.status) {
           reset();
           setGetBase64Code(undefined);
+          getMembersDataFromAPI();
+          cancelBtnAction();
           toast.success("Member Added To List!", {
             position: "top-center",
             autoClose: 5000,
@@ -71,7 +73,6 @@ const AddMemberModal: React.FC<Props> = ({
             progress: undefined,
             theme: "colored",
           });
-          cancelBtnAction();
         } else {
           toast.error("Error!!!", {
             position: "top-center",
@@ -102,7 +103,6 @@ const AddMemberModal: React.FC<Props> = ({
           onSubmit={handleSubmit((data: any) => {
             console.log({ ...data, imageBase64: getBase64Code });
             postMemberInfoToApi({ ...data, imageBase64: getBase64Code });
-            getMembersDataFromAPI();
           })}
         >
           <div className="ve-modal-header">
@@ -185,7 +185,7 @@ const AddMemberModal: React.FC<Props> = ({
 
                   <td>
                     <input
-                      type={"phone"}
+                      type={"number"}
                       className="modal-input"
                       {...register("phone", { required: true })}
                     />
