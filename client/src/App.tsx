@@ -51,8 +51,6 @@ const App: React.FC = () => {
     }
   );
 
-  console.log(options);
-
   return (
     <div className="App">
       <MemberList
