@@ -77,5 +77,9 @@ export const updateMemberController = (req: Request, res: Response) => {
 };
 
 export const addMemberToGroupController = (req: Request, res: Response) => {
+  const { selectedGroups } = req.body;
+
+  console.log(selectedGroups);
+
   res.json({ status: true });
 };

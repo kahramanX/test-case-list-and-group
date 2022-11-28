@@ -92,6 +92,7 @@ const MemberList: React.FC<Props> = ({
             setSelectedMemberID={setSelectedMemberID}
             memberLocation={"memberList"}
             groupsOfMember={memberData?.groups}
+            selectedMemberID={selectedMemberID}
           />
         ))}
 
