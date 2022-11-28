@@ -94,24 +94,19 @@ export const addMemberToGroupController = (req: Request, res: Response) => {
         }
       }
 
-      //memberInfos.save();
+      memberInfos.save();
       for (let i = 0; i < memberInfos.groups.length; i++) {
         GroupModel.findOne({
           _id: memberInfos.groups[i].groupID,
         }).then((groupInfos: any) => {
-          console.log(groupInfos.members.length + " = uzunluğu");
-
           if (groupInfos.members.length >= 1) {
-            console.log("0 den büyük - uzunluk = " + groupInfos.members.length);
-
+            // Eğer zaten eklenmiş bir üyeyi tekrar eklemeye kalkarsam = ID return undefined
             if (groupInfos.members[i]._id != memberID) {
               groupInfos.members.push(memberInfos);
-              console.log("pushlama alanına girdi");
             } else {
-              console.log("pushlanamz");
+              console.log("NOT PUSHES");
             }
           } else if (groupInfos.members.length === 0) {
-            console.log("0a eşit");
             groupInfos.members.push(memberInfos);
           }
 
