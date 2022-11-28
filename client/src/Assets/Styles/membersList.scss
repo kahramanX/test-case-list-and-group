@@ -57,6 +57,10 @@
             border-radius: 8px;
             background-color: $dark-blue;
             font-size: 12px;
+
+            .react-dropdown-select-option-remove {
+              display: none;
+            }
           }
         }
 

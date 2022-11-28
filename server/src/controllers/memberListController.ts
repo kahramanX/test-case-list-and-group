@@ -78,8 +78,9 @@ export const updateMemberController = (req: Request, res: Response) => {
 
 export const addMemberToGroupController = (req: Request, res: Response) => {
   const { selectedGroups } = req.body;
-
+  const memberID = req.params.id;
   console.log(selectedGroups);
+  console.log(memberID);
 
   res.json({ status: true });
 };
