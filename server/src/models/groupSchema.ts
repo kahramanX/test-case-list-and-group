@@ -10,8 +10,9 @@ const groupSchema = Schema({
   },
   members: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Member",
+      autopopulate: true,
     },
   ],
   createdDate: {

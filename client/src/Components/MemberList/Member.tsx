@@ -2,7 +2,7 @@ import Button from "Components/Shared/Button";
 import IconButton from "Components/Shared/IconButton";
 import React, { useState, useEffect } from "react";
 import Select from "react-dropdown-select";
-import { IMember, Ioptions } from "Types/types";
+import { IGroup, IMember, Ioptions } from "Types/types";
 
 type Props = {
   setDeleteModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,6 +11,7 @@ type Props = {
   memberLocation: "memberList" | "memberGroup";
   memberData?: IMember | undefined;
   options?: Ioptions[] | undefined | any;
+  groupsOfMember?: Ioptions[] | undefined | any;
 };
 
 const Member: React.FC<Props> = ({
@@ -20,10 +21,11 @@ const Member: React.FC<Props> = ({
   memberLocation,
   memberData,
   options,
+  groupsOfMember,
 }) => {
   const [isOpenPopover, setIsOpenPopover] = useState<boolean>(true);
   const [selectedOptionsToAPI, setSelectedOptionsToAPI] = useState<
-    Ioptions[] | undefined
+    Ioptions[] | undefined | any
   >();
 
   function openMemberInfoModal(): any {
@@ -54,8 +56,6 @@ const Member: React.FC<Props> = ({
     console.log("updated groups");
     console.log("selectedOptionsToAPI", selectedOptionsToAPI);
   }
-
-  const values: Ioptions[] = [];
 
   return (
     <>
@@ -118,11 +118,14 @@ const Member: React.FC<Props> = ({
               />
             ) : null}
             <Select
-              multi={true}
               options={options}
-              values={values}
+              values={groupsOfMember}
+              keepSelectedInList={false}
+              disabledLabel={"disabled"}
+              clearOnSelect={false}
+              backspaceDelete={false}
+              multi={true}
               onChange={(values2) => {
-                console.log(values2);
                 setSelectedOptionsToAPI(values2);
               }}
             />

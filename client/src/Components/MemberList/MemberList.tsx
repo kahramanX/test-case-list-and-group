@@ -91,6 +91,7 @@ const MemberList: React.FC<Props> = ({
             setViewAndEditModalIsOpen={setViewAndEditModalIsOpen}
             setSelectedMemberID={setSelectedMemberID}
             memberLocation={"memberList"}
+            groupsOfMember={memberData?.groups}
           />
         ))}
 
