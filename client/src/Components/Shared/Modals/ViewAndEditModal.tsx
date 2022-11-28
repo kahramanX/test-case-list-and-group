@@ -245,6 +245,7 @@ const ViewAndEditModal: React.FC<Props> = ({
                   {editModeIsOpen && (
                     <td>
                       <input
+                        maxLength={15}
                         type={"text"}
                         defaultValue={singleMemberDataFromApi?.firstName}
                         className="modal-input"
@@ -265,6 +266,7 @@ const ViewAndEditModal: React.FC<Props> = ({
                   {editModeIsOpen && (
                     <td>
                       <input
+                        maxLength={15}
                         type={"text"}
                         defaultValue={singleMemberDataFromApi?.lastName}
                         className="modal-input"
@@ -282,6 +284,7 @@ const ViewAndEditModal: React.FC<Props> = ({
                   {editModeIsOpen && (
                     <td>
                       <input
+                        maxLength={15}
                         type={"email"}
                         defaultValue={singleMemberDataFromApi?.email}
                         className="modal-input"
@@ -300,6 +303,7 @@ const ViewAndEditModal: React.FC<Props> = ({
                   {editModeIsOpen && (
                     <td>
                       <input
+                        maxLength={15}
                         type={"number"}
                         defaultValue={singleMemberDataFromApi?.phone}
                         className="modal-input"
@@ -320,6 +324,8 @@ const ViewAndEditModal: React.FC<Props> = ({
                   {editModeIsOpen && (
                     <td>
                       <input
+                        min="1900-01-01"
+                        max="2022-01-01"
                         type={"date"}
                         defaultValue={singleMemberDataFromApi?.birthday}
                         className="modal-input"

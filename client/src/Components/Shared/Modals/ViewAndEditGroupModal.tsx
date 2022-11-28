@@ -160,6 +160,7 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
                   {editModeIsOpen && (
                     <td>
                       <input
+                        maxLength={15}
                         type={"text"}
                         defaultValue={singleGroupDataFromApi?.groupName}
                         className="modal-input"

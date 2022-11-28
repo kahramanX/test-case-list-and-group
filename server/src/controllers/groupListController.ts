@@ -61,3 +61,10 @@ export const updateGroupController = (req: Request, res: Response) => {
       res.json({ status: false });
     });
 };
+
+export const removeMemberFromGroupController = (
+  req: Request,
+  res: Response
+) => {
+  res.json({ status: true });
+};

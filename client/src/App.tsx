@@ -45,12 +45,11 @@ const App: React.FC = () => {
     (group, index) => {
       return {
         label: group.groupName,
-        value: group._id,
+        value: group.groupName + group._id,
+        groupID: group._id,
       };
     }
   );
-
-  console.log(options);
 
   return (
     <div className="App">

@@ -10,8 +10,9 @@ const groupSchema = Schema({
   },
   members: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "member",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Member",
+      autopopulate: true,
     },
   ],
   createdDate: {
@@ -32,6 +33,6 @@ const groupSchema = Schema({
   },
 });
 
-const GroupModel = mongoose.model("group", groupSchema);
+const GroupModel = mongoose.model("Group", groupSchema, "groups");
 
 export default GroupModel;

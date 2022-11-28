@@ -3,7 +3,7 @@ import "Assets/Styles/ComponentsStyle/badge.scss";
 
 type Props = {
   text?: string | number;
-  color?: string;
+  color?: "blue" | "red";
   exClass?: string;
 };
 

@@ -3,7 +3,13 @@ import "Assets/Styles/ComponentsStyle/iconButton.scss";
 
 type Props = {
   iconName: string;
-  color: string;
+  color:
+    | "red"
+    | "blue"
+    | "green"
+    | "red-border"
+    | "blue-border"
+    | "green-border";
   exClass?: string;
   action?: any;
 };

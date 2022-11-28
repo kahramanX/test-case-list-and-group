@@ -143,6 +143,7 @@ const AddMemberModal: React.FC<Props> = ({
                   <td className="table-title">First Name:</td>
                   <td>
                     <input
+                      maxLength={15}
                       type={"text"}
                       className="modal-input"
                       {...register("firstName", { required: true })}
@@ -157,6 +158,7 @@ const AddMemberModal: React.FC<Props> = ({
 
                   <td>
                     <input
+                      maxLength={15}
                       type={"text"}
                       className="modal-input"
                       {...register("lastName", { required: true })}
@@ -171,6 +173,7 @@ const AddMemberModal: React.FC<Props> = ({
 
                   <td>
                     <input
+                      maxLength={15}
                       type={"email"}
                       className="modal-input"
                       {...register("email", { required: true })}
@@ -185,6 +188,7 @@ const AddMemberModal: React.FC<Props> = ({
 
                   <td>
                     <input
+                      maxLength={15}
                       type={"number"}
                       className="modal-input"
                       {...register("phone", { required: true })}
@@ -199,6 +203,9 @@ const AddMemberModal: React.FC<Props> = ({
 
                   <td>
                     <input
+                      min="1900-01-01"
+                      max="2022-01-01"
+                      maxLength={15}
                       type={"date"}
                       className="modal-input"
                       {...register("birthday", { required: true })}
