@@ -4,7 +4,8 @@ import { options } from "../types/types";
 
 //Models
 import MemberModel from "../models/MemberSchema";
-import MemberListModel from "../models/MemberListSchema";
+import GroupModel from "../models/GroupSchema";
+import { send } from "process";
 
 // Member Actions
 
@@ -79,8 +80,49 @@ export const updateMemberController = (req: Request, res: Response) => {
 export const addMemberToGroupController = (req: Request, res: Response) => {
   const { selectedGroups } = req.body;
   const memberID = req.params.id;
-  console.log(selectedGroups);
-  console.log(memberID);
 
-  res.json({ status: true });
+  MemberModel.findOne({ _id: memberID })
+    .then((memberInfos: any) => {
+      if (memberInfos.groups.length === 0) {
+        for (let i = 0; i < selectedGroups.length; i++) {
+          memberInfos.groups.push(selectedGroups[i]);
+        }
+      } else {
+        memberInfos.groups = [];
+        for (let i = 0; i < selectedGroups.length; i++) {
+          memberInfos.groups.push(selectedGroups[i]);
+        }
+      }
+
+      //memberInfos.save();
+      for (let i = 0; i < memberInfos.groups.length; i++) {
+        GroupModel.findOne({
+          _id: memberInfos.groups[i].groupID,
+        }).then((groupInfos: any) => {
+          console.log(groupInfos.members.length + " = uzunluğu");
+
+          if (groupInfos.members.length >= 1) {
+            console.log("0 den büyük - uzunluk = " + groupInfos.members.length);
+
+            if (groupInfos.members[i]._id != memberID) {
+              groupInfos.members.push(memberInfos);
+              console.log("pushlama alanına girdi");
+            } else {
+              console.log("pushlanamz");
+            }
+          } else if (groupInfos.members.length === 0) {
+            console.log("0a eşit");
+            groupInfos.members.push(memberInfos);
+          }
+
+          groupInfos.save();
+        });
+      }
+
+      res.json({ status: true });
+    })
+    .catch((error: any) => {
+      console.log(error);
+      res.json({ status: false });
+    });
 };

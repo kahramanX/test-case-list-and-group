@@ -63,7 +63,7 @@ const Group: React.FC<Props> = ({
           </div>
         </div>
         <div className="member-list">
-          {[0, 1, 2].map((index) => (
+          {groupData?.members.map((member, index) => (
             <Member
               key={index}
               setViewAndEditModalIsOpen={setViewAndEditModalIsOpen}
@@ -73,7 +73,9 @@ const Group: React.FC<Props> = ({
               selectedMemberID={selectedMemberID}
               selectedGroupID={selectedGroupID}
               setSelectedGroupID={setSelectedGroupID}
+              getGroupsDataFromAPI={getGroupsDataFromAPI}
               groupData={groupData}
+              memberData={member}
             />
           ))}
         </div>

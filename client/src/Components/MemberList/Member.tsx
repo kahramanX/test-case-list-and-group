@@ -11,6 +11,8 @@ type Props = {
   setViewAndEditModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedMemberID: React.Dispatch<React.SetStateAction<string | undefined>>;
   setSelectedGroupID?: React.Dispatch<React.SetStateAction<string | undefined>>;
+  getMembersDataFromAPI?: any;
+  getGroupsDataFromAPI?: any;
   selectedMemberID: string | undefined;
   selectedGroupID?: string | undefined;
   memberLocation: "memberList" | "memberGroup";
@@ -25,6 +27,8 @@ const Member: React.FC<Props> = ({
   setSelectedGroupID,
   setDeleteModalIsOpen,
   setViewAndEditModalIsOpen,
+  getMembersDataFromAPI,
+  getGroupsDataFromAPI,
   memberLocation,
   memberData,
   options,
@@ -83,8 +87,8 @@ const Member: React.FC<Props> = ({
       )
       .then((response: any) => {
         if (response.data.status) {
-          //getMembersDataFromAPI();
-          //getGroupsDataFromAPI();
+          getMembersDataFromAPI();
+          getGroupsDataFromAPI();
           setIsOpenPopover((isOpenPopover) => !isOpenPopover);
           setSelectedOptionsToAPI(undefined);
           toast.success("Updated Groups Selections!", {

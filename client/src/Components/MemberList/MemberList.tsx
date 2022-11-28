@@ -15,6 +15,7 @@ type Props = {
   setSelectedMemberID: React.Dispatch<React.SetStateAction<string | undefined>>;
   selectedMemberID: string | undefined;
   getMembersDataFromAPI?: any;
+  getGroupsDataFromAPI: any;
   options: Ioptions[] | undefined;
 };
 
@@ -23,6 +24,7 @@ const MemberList: React.FC<Props> = ({
   setSelectedMemberID,
   selectedMemberID,
   getMembersDataFromAPI,
+  getGroupsDataFromAPI,
   options,
 }) => {
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState<boolean>(false);
@@ -82,19 +84,23 @@ const MemberList: React.FC<Props> = ({
       </div>
 
       <div className="members-list">
-        {membersData?.map((memberData, index) => (
-          <Member
-            key={index}
-            memberData={memberData}
-            options={options}
-            setDeleteModalIsOpen={setDeleteModalIsOpen}
-            setViewAndEditModalIsOpen={setViewAndEditModalIsOpen}
-            setSelectedMemberID={setSelectedMemberID}
-            memberLocation={"memberList"}
-            groupsOfMember={memberData?.groups}
-            selectedMemberID={selectedMemberID}
-          />
-        ))}
+        {membersData?.map((memberData, index) => {
+          return (
+            <Member
+              key={index}
+              memberData={memberData}
+              options={options}
+              setDeleteModalIsOpen={setDeleteModalIsOpen}
+              setViewAndEditModalIsOpen={setViewAndEditModalIsOpen}
+              setSelectedMemberID={setSelectedMemberID}
+              memberLocation={"memberList"}
+              groupsOfMember={memberData?.groups}
+              selectedMemberID={selectedMemberID}
+              getMembersDataFromAPI={getMembersDataFromAPI}
+              getGroupsDataFromAPI={getGroupsDataFromAPI}
+            />
+          );
+        })}
 
         {membersData?.length === 0 && (
           <div className="center-no-data-text">

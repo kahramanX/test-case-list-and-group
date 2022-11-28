@@ -58,6 +58,7 @@ const App: React.FC = () => {
         selectedMemberID={selectedMemberID}
         membersData={memberDataFromApi && memberDataFromApi?.data}
         getMembersDataFromAPI={getMembersDataFromAPI}
+        getGroupsDataFromAPI={getGroupsDataFromAPI}
         options={options}
       />
       <GroupsList
