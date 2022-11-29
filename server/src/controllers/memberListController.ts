@@ -1,11 +1,10 @@
-import express, { Request, Response } from "express";
+import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { options } from "../types/types";
 
 //Models
 import MemberModel from "../models/MemberSchema";
 import GroupModel from "../models/GroupSchema";
-import { send } from "process";
 
 // Member Actions
 
@@ -47,7 +46,6 @@ export const addMemberController = (req: Request, res: Response) => {
   });
 };
 
-// Running Successfully
 export const deleteMemberController = (req: Request, res: Response) => {
   MemberModel.findById({ _id: req.params.id })
     .then((memberInfos: any) => {
@@ -56,15 +54,10 @@ export const deleteMemberController = (req: Request, res: Response) => {
           _id: memberInfos.groups[i].groupID,
         }).then((groupInfos: any) => {
           for (let j = 0; j < groupInfos.members.length; j++) {
-            console.log("for içindeeeeeee");
-            console.log(groupInfos.members[j]._id);
-            console.log(memberInfos._id);
-
             if (
               groupInfos.members[j]._id.toString() ===
               memberInfos._id.toString()
             ) {
-              console.log("splice edildi");
               groupInfos.members.splice(j, 1);
             }
           }
@@ -74,8 +67,7 @@ export const deleteMemberController = (req: Request, res: Response) => {
       }
 
       MemberModel.findByIdAndRemove({ _id: req.params.id }).then(
-        (memberInfos: any) => {
-          console.log("silindi");
+        (memberInfos2: any) => {
           res.json({ status: true });
         }
       );
@@ -105,7 +97,7 @@ export const updateMemberController = (req: Request, res: Response) => {
     });
 };
 
-// Have a bugs
+// Have bugs
 export const addMemberToGroupController = (req: Request, res: Response) => {
   const { selectedGroups } = req.body;
   const memberID = req.params.id;
@@ -129,8 +121,7 @@ export const addMemberToGroupController = (req: Request, res: Response) => {
           _id: memberInfos.groups[i].groupID,
         }).then((groupInfos: any) => {
           if (groupInfos.members.length >= 1) {
-            // Eğer zaten eklenmiş bir üyeyi tekrar eklemeye kalkarsam = ID return undefined
-            if (groupInfos.members[i]._id != memberID) {
+            if (groupInfos.members[i].toString() != memberID) {
               groupInfos.members.push(memberInfos);
             } else {
               console.log("NOT PUSHES");
