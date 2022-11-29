@@ -82,6 +82,42 @@ const GroupsList: React.FC<Props> = ({
       });
   }
 
+  function postRemoveMemberFromGrop(
+    memberID: string | undefined,
+    groupID: string | undefined
+  ) {
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/api/group/remove/member/${memberID}/${groupID}`
+      )
+      .then((response: any) => {
+        if (response.data.status) {
+          getMembersDataFromAPI();
+          getGroupsDataFromAPI();
+          toast.success("Member Removed From The Group!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          toast.error("Error!!!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      });
+  }
+
   return (
     <div className="members-list-container groups-section">
       <div className="members-list-title-row">
@@ -136,12 +172,12 @@ const GroupsList: React.FC<Props> = ({
         confirmBtnText={"Yes, I am sure"}
         confirmBtnAction={() => {
           console.log("confirm");
+          postRemoveMemberFromGrop(selectedMemberID, selectedGroupID);
+          getGroupsDataFromAPI();
         }}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => {
-          console.log("cancel");
           setDeleteModalIsOpen(false);
-          getGroupsDataFromAPI();
         }}
         whenClosing={() => questionModalClosingActions()}
       />

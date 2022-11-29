@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 type Props = {
   membersData: IMember[] | undefined;
   setSelectedMemberID: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setSelectedGroupID: React.Dispatch<React.SetStateAction<string | undefined>>;
   selectedMemberID: string | undefined;
   getMembersDataFromAPI?: any;
   getGroupsDataFromAPI: any;
@@ -22,6 +23,7 @@ type Props = {
 const MemberList: React.FC<Props> = ({
   membersData,
   setSelectedMemberID,
+  setSelectedGroupID,
   selectedMemberID,
   getMembersDataFromAPI,
   getGroupsDataFromAPI,
@@ -98,6 +100,7 @@ const MemberList: React.FC<Props> = ({
               selectedMemberID={selectedMemberID}
               getMembersDataFromAPI={getMembersDataFromAPI}
               getGroupsDataFromAPI={getGroupsDataFromAPI}
+              setSelectedGroupID={setSelectedGroupID}
             />
           );
         })}

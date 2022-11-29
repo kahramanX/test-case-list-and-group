@@ -86,9 +86,24 @@ export const removeMemberFromGroupController = (
   req: Request,
   res: Response
 ) => {
-  GroupModel.findOne({ _id: req.params.id }).then(() => {
-    console.log("test");
+  const { memberID, groupID } = req.params;
+
+  GroupModel.findOne({ _id: groupID }).then((groupInfos: any) => {
+    for (let i = 0; i < groupInfos.members.length; i++) {
+      if (groupInfos.members[i]._id.toString() === memberID) {
+        groupInfos.members.splice(i, 1);
+        groupInfos.save();
+      }
+    }
   });
 
-  res.json({ status: true });
+  MemberModel.findOne({ _id: memberID }).then((memberInfos: any) => {
+    for (let i = 0; i < memberInfos.groups.length; i++) {
+      if (memberInfos.groups[i].groupID === groupID) {
+        memberInfos.groups.splice(i, 1);
+        memberInfos.save();
+      }
+    }
+    res.json({ status: true });
+  });
 };

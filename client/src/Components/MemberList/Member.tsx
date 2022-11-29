@@ -10,7 +10,7 @@ type Props = {
   setDeleteModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setViewAndEditModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedMemberID: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setSelectedGroupID?: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setSelectedGroupID: React.Dispatch<React.SetStateAction<string | undefined>>;
   getMembersDataFromAPI?: any;
   getGroupsDataFromAPI?: any;
   selectedMemberID: string | undefined;
@@ -65,8 +65,8 @@ const Member: React.FC<Props> = ({
     console.log("leave group");
     setDeleteModalIsOpen(true);
     setSelectedMemberID(memberData?._id);
-    //setSelectedGroupID(groupData?._id);
-    console.log(groupData?._id);
+    setSelectedGroupID(groupData?._id);
+    console.log(selectedGroupID);
   }
 
   function updateMembersGroupSelections(): any {
