@@ -93,18 +93,18 @@ export const removeMemberFromGroupController = (
     for (let i = 0; i < groupInfos.members.length; i++) {
       if (groupInfos.members[i]._id.toString() === memberID) {
         groupInfos.members.splice(i, 1);
-        groupInfos.save();
       }
     }
+    groupInfos.save();
   });
 
   MemberModel.findOne({ _id: memberID }).then((memberInfos: any) => {
     for (let i = 0; i < memberInfos.groups.length; i++) {
       if (memberInfos.groups[i].groupID === groupID) {
         memberInfos.groups.splice(i, 1);
-        memberInfos.save();
       }
     }
+    memberInfos.save();
     res.json({ status: true });
   });
 };

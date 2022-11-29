@@ -71,7 +71,6 @@ const Member: React.FC<Props> = ({
 
   function updateMembersGroupSelections(): any {
     console.log("updated groups");
-    console.log("selectedOptionsToAPI", selectedOptionsToAPI);
     setSelectedMemberID(memberData?._id);
     postSelectedGroupsToMemberWithAPI(selectedMemberID, selectedOptionsToAPI);
   }

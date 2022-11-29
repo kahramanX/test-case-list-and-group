@@ -342,7 +342,11 @@ const ViewAndEditModal: React.FC<Props> = ({
                   <>
                     <tr>
                       <td className="table-title">Added Groups:</td>
-                      <td>Hello, xyz, Winners, Friends</td>
+                      <td>
+                        {singleMemberDataFromApi?.groups.map((group: any) => (
+                          <span>{group.label} -</span>
+                        ))}
+                      </td>
                     </tr>
                     <tr>
                       <td className="table-title">Created Date:</td>

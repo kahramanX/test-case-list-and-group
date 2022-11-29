@@ -105,6 +105,8 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
     setEditModeIsOpen(false);
   }
 
+  console.log(singleGroupDataFromApi);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -184,7 +186,14 @@ const ViewAndEditGroupModal: React.FC<Props> = ({
                     </tr>
                     <tr>
                       <td className="table-title">Members:</td>
-                      <td>Ege kahraman, Ece Yılmaz</td>
+                      <td>
+                        {singleGroupDataFromApi?.members.map((member: any) => (
+                          <span>
+                            {member.firstName}
+                            {""} {member.lastName} -
+                          </span>
+                        ))}
+                      </td>
                     </tr>
                   </>
                 )}
