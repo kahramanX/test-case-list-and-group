@@ -47,10 +47,38 @@ export const addMemberController = (req: Request, res: Response) => {
   });
 };
 
+// Running Successfully
 export const deleteMemberController = (req: Request, res: Response) => {
-  MemberModel.findByIdAndRemove({ _id: req.params.id })
-    .then((response: any) => {
-      res.json({ status: true });
+  MemberModel.findById({ _id: req.params.id })
+    .then((memberInfos: any) => {
+      for (let i = 0; i < memberInfos.groups.length; i++) {
+        GroupModel.findOne({
+          _id: memberInfos.groups[i].groupID,
+        }).then((groupInfos: any) => {
+          for (let j = 0; j < groupInfos.members.length; j++) {
+            console.log("for içindeeeeeee");
+            console.log(groupInfos.members[j]._id);
+            console.log(memberInfos._id);
+
+            if (
+              groupInfos.members[j]._id.toString() ===
+              memberInfos._id.toString()
+            ) {
+              console.log("splice edildi");
+              groupInfos.members.splice(j, 1);
+            }
+          }
+
+          groupInfos.save();
+        });
+      }
+
+      MemberModel.findByIdAndRemove({ _id: req.params.id }).then(
+        (memberInfos: any) => {
+          console.log("silindi");
+          res.json({ status: true });
+        }
+      );
     })
     .catch((error: any) => {
       res.json({ status: false });
@@ -77,6 +105,7 @@ export const updateMemberController = (req: Request, res: Response) => {
     });
 };
 
+// Have a bugs
 export const addMemberToGroupController = (req: Request, res: Response) => {
   const { selectedGroups } = req.body;
   const memberID = req.params.id;
