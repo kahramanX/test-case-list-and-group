@@ -23,6 +23,7 @@
     "uuid": "^9.0.0"
   },
   "dependencies": {
+    "@types/mongoose": "^5.11.97",
     "mongoose": "^6.7.3",
     "ts-node": "^10.9.1"
   }

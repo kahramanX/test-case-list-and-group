@@ -5,6 +5,7 @@ import { options } from "../types/types";
 //Models
 import GroupModel from "../models/GroupSchema";
 import MemberModel from "../models/MemberSchema";
+
 export const addGroupController = (req: Request, res: Response) => {
   const { groupName } = req.body;
 
