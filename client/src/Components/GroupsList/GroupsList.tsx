@@ -58,6 +58,7 @@ const GroupsList: React.FC<Props> = ({
         console.log(response);
         if (response.data.status) {
           getGroupsDataFromAPI();
+          getMembersDataFromAPI();
           toast.success("Group Deleted From List!", {
             position: "top-center",
             autoClose: 5000,
@@ -174,6 +175,7 @@ const GroupsList: React.FC<Props> = ({
           console.log("confirm");
           postRemoveMemberFromGrop(selectedMemberID, selectedGroupID);
           getGroupsDataFromAPI();
+          setDeleteModalIsOpen(false);
         }}
         cancelBtnText={"Cancel"}
         cancelBtnAction={() => {
