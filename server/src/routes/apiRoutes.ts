@@ -38,6 +38,9 @@ router.get("/group/:id", getSingleGroupController);
 router.post("/group/add", addGroupController);
 router.post("/group/delete/:id", deleteGroupController);
 router.post("/group/update/:id", updateGroupController);
-router.post("/group/remove/member/:id", removeMemberFromGroupController);
+router.post(
+  "/group/remove/member/:memberID/:groupID",
+  removeMemberFromGroupController
+);
 
 export default router;

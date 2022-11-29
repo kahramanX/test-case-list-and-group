@@ -23,13 +23,9 @@ const memberSchema = Schema({
   birthday: {
     type: String,
   },
-  groups: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Group",
-      autopopulate: true,
-    },
-  ],
+  groups: {
+    type: Array,
+  },
   createdDate: {
     type: String,
     default: new Intl.DateTimeFormat("tr-TR", {

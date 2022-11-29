@@ -13,6 +13,8 @@ type Props = {
   setSelectedGroupID: React.Dispatch<React.SetStateAction<string | undefined>>;
   groupData: IGroup;
   getGroupsDataFromAPI: any;
+  selectedMemberID: string | undefined;
+  selectedGroupID: string | undefined;
 };
 
 const Group: React.FC<Props> = ({
@@ -24,6 +26,8 @@ const Group: React.FC<Props> = ({
   setSelectedGroupID,
   groupData,
   getGroupsDataFromAPI,
+  selectedMemberID,
+  selectedGroupID,
 }) => {
   function deleteGroupModalHandle() {
     setDeleteGroupModalIsOpen(true);
@@ -59,13 +63,19 @@ const Group: React.FC<Props> = ({
           </div>
         </div>
         <div className="member-list">
-          {[0, 1, 2].map((index) => (
+          {groupData?.members.map((member, index) => (
             <Member
               key={index}
               setViewAndEditModalIsOpen={setViewAndEditModalIsOpen}
               memberLocation={"memberGroup"}
               setDeleteModalIsOpen={setDeleteModalIsOpen}
               setSelectedMemberID={setSelectedMemberID}
+              selectedMemberID={selectedMemberID}
+              selectedGroupID={selectedGroupID}
+              setSelectedGroupID={setSelectedGroupID}
+              getGroupsDataFromAPI={getGroupsDataFromAPI}
+              groupData={groupData}
+              memberData={member}
             />
           ))}
         </div>

@@ -8,13 +8,9 @@ const groupSchema = Schema({
   groupName: {
     type: String,
   },
-  members: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Member",
-      autopopulate: true,
-    },
-  ],
+  members: {
+    type: Array,
+  },
   createdDate: {
     type: String,
     default: new Intl.DateTimeFormat("tr-TR", {

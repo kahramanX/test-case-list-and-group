@@ -1,10 +1,10 @@
-import express, { Request, Response } from "express";
+import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { options } from "../types/types";
 
 //Models
 import MemberModel from "../models/MemberSchema";
-import MemberListModel from "../models/MemberListSchema";
+import GroupModel from "../models/GroupSchema";
 
 // Member Actions
 
@@ -47,9 +47,30 @@ export const addMemberController = (req: Request, res: Response) => {
 };
 
 export const deleteMemberController = (req: Request, res: Response) => {
-  MemberModel.findByIdAndRemove({ _id: req.params.id })
-    .then((response: any) => {
-      res.json({ status: true });
+  MemberModel.findById({ _id: req.params.id })
+    .then((memberInfos: any) => {
+      for (let i = 0; i < memberInfos.groups.length; i++) {
+        GroupModel.findOne({
+          _id: memberInfos.groups[i].groupID,
+        }).then((groupInfos: any) => {
+          for (let j = 0; j < groupInfos.members.length; j++) {
+            if (
+              groupInfos.members[j]._id.toString() ===
+              memberInfos._id.toString()
+            ) {
+              groupInfos.members.splice(j, 1);
+            }
+          }
+
+          groupInfos.save();
+        });
+      }
+
+      MemberModel.findByIdAndRemove({ _id: req.params.id }).then(
+        (memberInfos2: any) => {
+          res.json({ status: true });
+        }
+      );
     })
     .catch((error: any) => {
       res.json({ status: false });
@@ -76,6 +97,47 @@ export const updateMemberController = (req: Request, res: Response) => {
     });
 };
 
+// Have bugs
 export const addMemberToGroupController = (req: Request, res: Response) => {
-  res.json({ status: true });
+  const { selectedGroups } = req.body;
+  const memberID = req.params.id;
+
+  MemberModel.findOne({ _id: memberID })
+    .then((memberInfos: any) => {
+      if (memberInfos.groups.length === 0) {
+        for (let i = 0; i < selectedGroups.length; i++) {
+          memberInfos.groups.push(selectedGroups[i]);
+        }
+      } else {
+        memberInfos.groups = [];
+        for (let i = 0; i < selectedGroups.length; i++) {
+          memberInfos.groups.push(selectedGroups[i]);
+        }
+      }
+
+      memberInfos.save();
+      for (let i = 0; i < memberInfos.groups.length; i++) {
+        GroupModel.findOne({
+          _id: memberInfos.groups[i].groupID,
+        }).then((groupInfos: any) => {
+          if (groupInfos.members.length >= 1) {
+            if (groupInfos.members[i].toString() != memberID) {
+              groupInfos.members.push(memberInfos);
+            } else {
+              console.log("NOT PUSHES");
+            }
+          } else if (groupInfos.members.length === 0) {
+            groupInfos.members.push(memberInfos);
+          }
+
+          groupInfos.save();
+        });
+      }
+
+      res.json({ status: true });
+    })
+    .catch((error: any) => {
+      console.log(error);
+      res.json({ status: false });
+    });
 };

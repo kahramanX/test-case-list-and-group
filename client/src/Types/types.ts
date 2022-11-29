@@ -51,3 +51,9 @@ export interface Ioptions {
   label: string;
   value: string;
 }
+
+export interface ISelectedGroup {
+  label: string;
+  value: string;
+  groupID: string;
+}
